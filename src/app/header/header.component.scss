@@ -1,0 +1,32 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+
+    li {
+      color: gray;
+      font-size: 1.2rem;
+      font-weight: bold;
+
+      &:hover {
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+        cursor: pointer;
+      }
+
+      &:active {
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.video-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.video-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+
+  h1 {
+    font-weight: 900;
+  }
+
+  p {
+    font-weight: 400;
+  }
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-aspect-ration: 16/9) {
+  .video {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+@media (max-aspect-ration: 16/9) {
+  .video {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  video {
+    display: none;
+  }
+
+  .video-container {
+    background: url("../../assets/earth.jpg");
+    background-size: cover;
+  }
+}

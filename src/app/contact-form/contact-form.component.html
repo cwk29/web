@@ -1,0 +1,55 @@
+<span *ngIf="contactForm.invalid" class="text-red" id="contact"
+  >One or more input fields are invalid.</span
+>
+<form
+  [formGroup]="contactForm"
+  (ngSubmit)="onSubmit()"
+  class="flex flex-wrap bg-red-500 p-2"
+>
+  <div class="form-input">
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      placeholder="Your Name"
+    />
+  </div>
+
+  <div class="form-input">
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="Email"
+    />
+  </div>
+
+  <div class="form-input">
+    <input
+      id="organization"
+      type="text"
+      formControlName="organization"
+      placeholder="Organization"
+    />
+  </div>
+  <div class="form-input">
+    <select (change)="update($event)" name="topic" id="topic">
+      <option value="default" disabled>Select a Topic</option>
+      <option
+        *ngFor="let topic of topics"
+        formControlName="topic"
+        [value]="topic"
+      >
+        {{ topic }}
+      </option>
+    </select>
+  </div>
+  <div class="form-message">
+    <textarea
+      name="message"
+      formControlName="message"
+      placeholder="Your message..."
+    ></textarea>
+  </div>
+  <app-button mat-raised-button type="submit">Submit</app-button>
+</form>

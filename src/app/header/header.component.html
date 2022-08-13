@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  WorTech Corp
+  <div class="flex-stretch"></div>
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Switch between dark and light mode"
+  >
+    <mat-icon class="mr-8">brightness_5</mat-icon>
+  </button>
+  <mat-slide-toggle [formControl]="toggleControl" class="mr-8">
+  </mat-slide-toggle>
+  <mat-icon>bedtime</mat-icon>
+  <button
+    mat-mini-fab
+    color="primary"
+    aria-label="Example icon button with a menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<!-- <header class="absolute w-full p-4 z-10"> -->
+<!-- <div class="flex justify-between items-end">
+    <h1 class="text-white text-xl font-extrabold align-bottom">WorTech Corp</h1>
+    <img src="../assets/logo.png" width="96" />
+    <div class="flex justify-center items-center bg-green-500">
+      <div class="flex justify-center items-center mx-2 bg-yellow-500">
+        <button
+          mat-fab
+          color="primary"
+          aria-label="Switch between dark and light mode"
+          (click)="toggleTheme()"
+        >
+          <mat-icon>{{
+            icon_theme === "light" ? "light_mode" : "dark_mode"
+          }}</mat-icon>
+        </button>
+      </div>
+      <app-button
+        mat-stroked-button
+        class="text-white"
+        (btnClick)="goToContactForm()"
+        >Contact Us</app-button
+      >
+    </div>
+  </div> -->
+<div class="relative bottom-0 py-2">
+  <mat-divider class="bg-gray-500 relative bottom-0"></mat-divider>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <ul>
+    <li><a routerLink="company">Company</a></li>
+    <li><a routerLink="capabilities">Capabilities</a></li>
+    <li><a routerLink="industries">Industries</a></li>
+    <li><a routerLink="careers">Careers</a></li>
+  </ul>
+</nav>
+<!-- </header> -->
