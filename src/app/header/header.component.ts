@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   @HostBinding('class') className = '';
   // icon_theme: string;
   // ariaLabel: string;
-  toggleControl = new FormControl(false);
+  toggleControl = new UntypedFormControl(false);
 
   // constructor() {
   //   this.icon_theme = 'dark';

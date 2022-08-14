@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-form',
@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./contact-form.component.scss'],
 })
 export class ContactFormComponent implements OnInit {
-  contactForm: FormGroup;
+  contactForm: UntypedFormGroup;
   topics: Array<string> = [
     'General Inquiry',
     'Alliance Partners',
@@ -21,12 +21,12 @@ export class ContactFormComponent implements OnInit {
   ];
 
   constructor() {
-    this.contactForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      organization: new FormControl(''),
-      topic: new FormControl('', Validators.required),
-      message: new FormControl('', Validators.required),
+    this.contactForm = new UntypedFormGroup({
+      name: new UntypedFormControl('', Validators.required),
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      organization: new UntypedFormControl(''),
+      topic: new UntypedFormControl('', Validators.required),
+      message: new UntypedFormControl('', Validators.required),
     });
   }
 
