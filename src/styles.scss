@@ -1,21 +1,26 @@
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
+@use "@angular/material" as mat;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@use "~@angular/material" as mat;
-
-@import "~@angular/material/theming";
+@import "@angular/material/theming";
 
 @include mat.core();
 
 // My crap
+$dark: rgb(36, 41, 47);
+$darker: rgb(2, 4, 8);
+$light: rgb(246, 248, 250);
 
-$bg-clr-dark: rgb(36, 41, 47);
+$bg-clr-dark: $darker;
+$bg-clr-default: $light;
 
+$text-clr-dark: $dark;
 $text-clr-light: #ffffff;
 $text-clr-link: rgb(13, 107, 218);
 
-$scheme-default: $text-clr-light, $bg-clr-dark;
+$scheme-dark: $text-clr-light, $bg-clr-dark;
+$scheme-default: $text-clr-dark, $bg-clr-default;
 
 @mixin color-scheme($text, $bg) {
   background-color: $bg;
@@ -24,7 +29,7 @@ $scheme-default: $text-clr-light, $bg-clr-dark;
 
 // end of my crap
 
-$angular-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900);
+$angular-primary: mat.define-palette(mat.$indigo-palette, 500, 100, 900);
 $angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 $angular-warn: mat.define-palette(mat.$red-palette);
@@ -39,7 +44,7 @@ $angular-default-theme: mat.define-light-theme(
   )
 );
 
-@include mat.all-component-themes($angular-default-theme);
+// @include mat.all-component-themes($angular-default-theme);
 
 $angular-dark-theme: mat.define-dark-theme(
   (
@@ -51,8 +56,17 @@ $angular-dark-theme: mat.define-dark-theme(
   )
 );
 
+// .light {
+//   @include mat.all-component-themes($angular-default-theme);
+//   @include color-scheme($scheme-default...);
+// }
+
 .dark {
-  @include mat.all-component-colors($angular-dark-theme);
+  // @include mat.all-component-colors($angular-dark-theme);
+  @include mat.all-component-themes($angular-dark-theme);
+  @include color-scheme($scheme-dark...);
+  // background-color: $bg-clr-dark;
+  // color: white;
 }
 
 * {
@@ -61,6 +75,25 @@ $angular-dark-theme: mat.define-dark-theme(
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+*[data-theme="dark"] {
+  color: white;
+}
+
+html,
 body {
+  @include mat.all-component-themes($angular-default-theme);
   @include color-scheme($scheme-default...);
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100%;
+}
+
+.sub-title {
+  font-size: 1rem;
+  color: lightslategray;
+}
+
+.title {
+  font-size: 2rem;
+  padding-bottom: 1rem;
 }

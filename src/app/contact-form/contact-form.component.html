@@ -1,55 +1,65 @@
-<span *ngIf="contactForm.invalid" class="text-red" id="contact"
-  >One or more input fields are invalid.</span
->
-<form
-  [formGroup]="contactForm"
-  (ngSubmit)="onSubmit()"
-  class="flex flex-wrap bg-red-500 p-2"
->
-  <div class="form-input">
-    <input
-      id="name"
-      type="text"
-      formControlName="name"
-      placeholder="Your Name"
-    />
-  </div>
+<div>
+  <span *ngIf="validationMessage" class="text-red" id="contact">{{
+    validationMessage
+  }}</span>
+  <form [formGroup]="contactForm" class="flex flex-wrap">
+    <div class="form-input">
+      <input
+        id="name"
+        name="name"
+        type="text"
+        (ngSubmit)="onSubmit()"
+        formControlName="name"
+        placeholder="Your Name"
+      />
+    </div>
 
-  <div class="form-input">
-    <input
-      id="email"
-      type="email"
-      formControlName="email"
-      placeholder="Email"
-    />
-  </div>
+    <div class="form-input">
+      <input
+        id="email"
+        name="email"
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+      />
+    </div>
 
-  <div class="form-input">
-    <input
-      id="organization"
-      type="text"
-      formControlName="organization"
-      placeholder="Organization"
-    />
-  </div>
-  <div class="form-input">
-    <select (change)="update($event)" name="topic" id="topic">
-      <option value="default" disabled>Select a Topic</option>
-      <option
-        *ngFor="let topic of topics"
-        formControlName="topic"
-        [value]="topic"
-      >
-        {{ topic }}
-      </option>
-    </select>
-  </div>
-  <div class="form-message">
-    <textarea
-      name="message"
-      formControlName="message"
-      placeholder="Your message..."
-    ></textarea>
-  </div>
-  <app-button mat-raised-button type="submit">Submit</app-button>
-</form>
+    <div class="form-input">
+      <input
+        id="organization"
+        name="organization"
+        type="text"
+        formControlName="organization"
+        placeholder="Organization"
+      />
+    </div>
+    <div class="form-input">
+      <select (change)="update($event)" name="topic" formControlName="topic">
+        <option value="default" disabled>Select a Topic</option>
+        <option *ngFor="let topic of topics" [value]="topic">
+          {{ topic }}
+        </option>
+      </select>
+    </div>
+    <div class="form-message">
+      <textarea
+        name="message"
+        formControlName="message"
+        placeholder="Your message..."
+      ></textarea>
+    </div>
+    <!-- <button
+      class="g-recaptcha"
+      data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+      data-callback="onSubmit"
+      data-action="submit"
+    >
+      Submit Request
+    </button> -->
+    <re-captcha [siteKey]="siteKey" formControlName="recaptcha"></re-captcha>
+    <button mat-stroked-button type="submit" [disabled]="contactForm.invalid">
+      Submit
+    </button>
+    <!-- <button (click)="onSubmit()">Submit</button> -->
+  </form>
+</div>

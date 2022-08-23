@@ -1,7 +1,7 @@
-import { Location } from './Location';
+import { Location } from "./Location";
 
 export interface Career {
-  id: number;
+  id: string;
   clearanceLevel: string;
   polyLevel: string;
   category: string;

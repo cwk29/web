@@ -15,11 +15,14 @@
     "@angular/compiler": "^14.1.2",
     "@angular/core": "^14.1.2",
     "@angular/forms": "^14.1.2",
+    "@angular/material": "^14.1.2",
     "@angular/platform-browser": "^14.1.2",
     "@angular/platform-browser-dynamic": "^14.1.2",
     "@angular/router": "^14.1.2",
-    "@angular/material": "^14.1.2",
     "@schematics/angular": "^14.1.1",
+    "express": "^4.18.1",
+    "ng-recaptcha": "^10.0.0",
+    "nodemailer": "^6.7.8",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -37,8 +40,8 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.6.4",
     "postcss": "^8.4.16",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "typescript": "~4.6.4"
   }
 }

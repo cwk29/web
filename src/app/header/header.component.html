@@ -1,26 +1,65 @@
-<mat-toolbar color="primary">
-  WorTech Corp
-  <div class="flex-stretch"></div>
-  <button
-    mat-fab
-    color="primary"
-    aria-label="Switch between dark and light mode"
-  >
-    <mat-icon class="mr-8">brightness_5</mat-icon>
-  </button>
-  <mat-slide-toggle [formControl]="toggleControl" class="mr-8">
-  </mat-slide-toggle>
-  <mat-icon>bedtime</mat-icon>
-  <button
-    mat-mini-fab
-    color="primary"
-    aria-label="Example icon button with a menu icon"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
-<!-- <header class="absolute w-full p-4 z-10"> -->
-<!-- <div class="flex justify-between items-end">
+<header class="flex-none">
+  <div class="toolbar">
+    <div
+      class="flex flex-row justify-center items-center cursor-pointer"
+      [routerLink]="['/']"
+    >
+      <div class="flex-none">
+        <img src="../assets/logo.png" width="96" />
+      </div>
+      <div class="flex-none">
+        <h1
+          class="dark:text-white text-xl font-bold"
+          [ngClass]="{ 'text-white': isHomeRoute }"
+        >
+          {{ title }}
+        </h1>
+      </div>
+    </div>
+    <div class="flex-1">
+      <!-- Navigation -->
+      <nav (scroll)="onWindowScroll()">
+        <ul>
+          <li>
+            <a routerLink="company">Company</a>
+          </li>
+          <li>
+            <a routerLink="capabilities">Capabilities</a>
+          </li>
+          <li>
+            <a routerLink="industries">Industries</a>
+          </li>
+          <li>
+            <a routerLink="careers">Careers</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="theme-container">
+      <button
+        mat-mini-fab
+        disabled
+        aria-label="Switch between dark and light mode (light mode)"
+      >
+        <mat-icon>light_mode</mat-icon>
+      </button>
+      <mat-slide-toggle
+        color="primary"
+        [checked]="darkMode"
+        (change)="toggleTheme($event)"
+      >
+      </mat-slide-toggle>
+      <button
+        mat-mini-fab
+        disabled
+        aria-label="Switch between dark and light mode (dark mode)"
+      >
+        <mat-icon>dark_mode</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- <header class="absolute w-full p-4 z-10"> -->
+  <!-- <div class="flex justify-between items-end">
     <h1 class="text-white text-xl font-extrabold align-bottom">WorTech Corp</h1>
     <img src="../assets/logo.png" width="96" />
     <div class="flex justify-center items-center bg-green-500">
@@ -44,17 +83,4 @@
       >
     </div>
   </div> -->
-<div class="relative bottom-0 py-2">
-  <mat-divider class="bg-gray-500 relative bottom-0"></mat-divider>
-</div>
-
-<!-- Navigation -->
-<nav>
-  <ul>
-    <li><a routerLink="company">Company</a></li>
-    <li><a routerLink="capabilities">Capabilities</a></li>
-    <li><a routerLink="industries">Industries</a></li>
-    <li><a routerLink="careers">Careers</a></li>
-  </ul>
-</nav>
-<!-- </header> -->
+</header>

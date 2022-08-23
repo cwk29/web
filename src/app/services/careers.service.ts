@@ -1,15 +1,24 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { CAREERS } from './data/careers';
-import { Career } from '../models/Career';
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
+import { CAREERS } from "./data/careers";
+import { Career } from "../models/Career";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CareersService {
-  constructor() {}
+  private careers: Observable<Career[]>;
+  constructor() {
+    this.careers = of(CAREERS);
+  }
 
   getCareers(): Observable<Career[]> {
-    const careers = of(CAREERS);
-    return careers;
+    return this.careers;
+  }
+
+  getCareer(id: string): Observable<Career> {
+    return this.getCareers().pipe(
+      map((careers: Career[]) => careers.find((career) => career.id === id)!)
+    );
   }
 }

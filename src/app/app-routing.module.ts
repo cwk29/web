@@ -1,17 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CareersComponent } from './careers/careers.component';
-import { HomeComponent } from './home/home.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeComponent,
   },
-  {
-    path: 'careers',
-    component: CareersComponent,
-  },
+  { path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({

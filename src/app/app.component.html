@@ -3,29 +3,158 @@
 
 <app-header></app-header>
 
-<main class="main">
-  <!-- <div class="video-overlay"></div>
-  <div class="video-container"> -->
-  <!-- Toolbar -->
-  <!-- <app-header></app-header> -->
-
-  <!-- Video Background-->
-  <!-- <video class="video" autoplay loop>
-      <source src="../assets/earth.mp4" type="video/mp4" />
-    </video>
-    <div class="video-content">
-      <h1 class="sm:text-3xl md:text-5xl">Mission Focused Technology Driven</h1>
-      <p class="max-w-xl pt-2">
-        We are experienced system, software, and hardware engineering
-        professionals with the knowledge and skills capable of designing,
-        modeling, developing, analyzing and deploying modern complex systems. We
-        focus our energy on working with our customer to deliver product and
-        service that brings mission success.
-      </p>
-    </div>
-  </div> -->
+<main>
   <router-outlet></router-outlet>
+  <!-- Footer -->
+  <!-- <app-footer></app-footer> -->
 </main>
 
-<!-- Footer -->
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
+<footer>
+  <div class="container mx-auto">
+    <div class="flex flex-wrap py-5 mb-5">
+      <div class="columns-12 lg:columns-4 mb-5">
+        <a href="/" aria-label="Go to WorTech homepage">
+          <mat-icon
+            id="footerLogo"
+            svgIcon="wortech"
+            color="primary"
+            aria-hidden="true"
+          ></mat-icon>
+        </a>
+      </div>
+      <div
+        class="columns-6 sm:columns-3 lg:columns-2 mb-6 md:mb-2 pr-3 lg:pr-0 lg:pl-4"
+      >
+        <h2>Section 1</h2>
+      </div>
+      <div
+        class="columns-6 sm:columns-3 lg:columns-2 mb-6 md:mb-2 pr-3 lg:pr-0 lg:pl-4"
+      >
+        <h2>Section 2</h2>
+      </div>
+      <div
+        class="columns-6 sm:columns-3 lg:columns-2 mb-6 md:mb-2 pr-3 lg:pr-0 lg:pl-4"
+      >
+        <h2>Section 3</h2>
+      </div>
+      <div
+        class="columns-6 sm:columns-3 lg:columns-2 mb-6 md:mb-2 pr-3 lg:pr-0 lg:pl-4"
+      >
+        <h2>Section 4</h2>
+      </div>
+    </div>
+  </div>
+  <div class="site-social">
+    <div
+      class="container mx-auto py-3 flex justify-between flex-row-reverse items-center"
+    >
+      <ul
+        class="list-style-none flex flex-row-reverse items-center mb-3 sm:mb-0 leading-none"
+      >
+        <li class="mr-3">
+          <a
+            href="https://linkedin.com/company/wortechcorp"
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+          >
+            <img
+              src="https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg"
+              height="18"
+              width="22"
+              class="d-block"
+              loading="lazy"
+              decoding="async"
+              alt="LinkedIn icon"
+            />
+          </a>
+        </li>
+        <li class="mr-3">
+          <a
+            href="https://facebook.com/wortechcorp"
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+          >
+            <img
+              src="https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg"
+              height="18"
+              width="22"
+              class="d-block"
+              loading="lazy"
+              decoding="async"
+              alt="Facebook icon"
+            />
+          </a>
+        </li>
+        <li class="mr-3">
+          <a
+            href="https://twitter.com/wortechcorp"
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+          >
+            <img
+              src="https://github.githubassets.com/images/modules/site/icons/footer/twitter.svg"
+              height="18"
+              width="22"
+              class="d-block"
+              loading="lazy"
+              decoding="async"
+              alt="Twitter icon"
+            />
+          </a>
+        </li>
+        <li class="mr-3">
+          <a
+            href="https://github.com/wortechcorp"
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+          >
+            <img
+              src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg"
+              height="18"
+              width="22"
+              class="d-block"
+              loading="lazy"
+              decoding="async"
+              alt="GitHub icon"
+            />
+          </a>
+        </li>
+      </ul>
+      <ul class="list-style-none flex flex-wrap text-gray-400">
+        <li class="mr-3">
+          <a
+            href=""
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+            >@ 2022 WorTech Corp</a
+          >
+        </li>
+        <li class="mr-3">
+          <a
+            href=""
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+            >Terms</a
+          >
+        </li>
+        <li class="mr-3">
+          <a
+            href=""
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+            >Privacy</a
+          >
+        </li>
+        <li class="mr-3">
+          <a
+            href=""
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+            >Site Map</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

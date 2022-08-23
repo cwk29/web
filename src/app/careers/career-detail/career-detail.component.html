@@ -1,0 +1,60 @@
+<!-- <h2>Career Details</h2>
+<div *ngIf="career$ | async as career">
+  <h3>{{ career.title }}</h3>
+  <p>Id: {{ career.id }}</p>
+  <button type="button" (click)="gotoCareer(career)">Back</button>
+</div> -->
+<section
+  *ngIf="career$ | async as career"
+  class="container mx-auto mt-20 py-20 justify-center items-center text-center"
+>
+  <h1 class="title">{{ career.title }}</h1>
+  <div class="flex w-3/5 mx-auto justify-evenly p-8 bg-light-gray">
+    <div class="flex flex-col justify-center">
+      <h3 class="font-bold tracking-widest uppercase">Clearance Level</h3>
+      <p>{{ career.clearanceLevel }}</p>
+    </div>
+    <div class="flex flex-col justify-center">
+      <h3 class="font-bold tracking-widest uppercase">Category</h3>
+      <p>{{ career.category }}</p>
+    </div>
+    <div class="flex flex-col justify-center">
+      <h3 class="font-bold tracking-widest uppercase">Location</h3>
+      <p>{{ career.location }}</p>
+    </div>
+    <div class="flex justify-center items-center">
+      <button mat-stroked-button>Apply</button>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap mx-8 bg-gray-500">
+    <div class="grow bg-yellow-200">
+      <article class="w-full text-left mx-auto">
+        <h1 class="title">REQ #: {{ career.id }}</h1>
+        <h3 class="text-lg font-bold tracking-wide">
+          Clearance: {{ career.clearanceLevel }}
+        </h3>
+        <h3 class="text-lg font-bold tracking-wide">
+          Polygraph: {{ career.polyLevel }}
+        </h3>
+        <h3 class="text-lg font-bold tracking-wide">Job Description</h3>
+        <p>{{ career.description }}</p>
+        <h3 class="text-lg font-bold tracking-wide">What We're Looking For</h3>
+        <ul *ngFor="let capability of career.capabilities">
+          <li class="list-disc">{{ capability }}</li>
+        </ul>
+        <h3 class="text-lg font-bold tracking-wide">What You'll Need</h3>
+        <ul *ngFor="let xp of career.experience">
+          <li class="list-disc">{{ xp }}</li>
+        </ul>
+        <h3 class="text-lg font-bold tracking-wide">Certifications</h3>
+        <ul *ngFor="let cert of career.certifications">
+          <li class="list-disc">{{ cert ? cert : "None" }}</li>
+        </ul>
+      </article>
+    </div>
+    <div class="grow bg-green-400">
+      <div class="w-full h-full bg-green-900">[Insert Map Here]</div>
+    </div>
+  </div>
+</section>
