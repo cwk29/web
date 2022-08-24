@@ -14,7 +14,7 @@ terraform {
 
 data "tfe_outputs" "eks" {
   organization = var.tfc_org_name
-  workspace = var.tfc_network_workspace_name
+  workspace    = var.tfc_network_workspace_name
 }
 
 # Retrieve EKS cluster information
