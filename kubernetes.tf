@@ -12,24 +12,18 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "eks" {
-  backend = "remote"
-
-  config = {
-    organization = var.tfc_org_name
-    workspaces = {
-      name = var.tfc_network_workspace_name
-    }
-  }
+data "tfe_outputs" "eks" {
+  organization = var.tfc_org_name
+  workspace = var.tfc_network_workspace_name
 }
 
 # Retrieve EKS cluster information
 provider "aws" {
-  region = data.terraform_remote_state.eks.outputs.region
+  region = data.tfe_outputs.eks.outputs.region
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = data.terraform_remote_state.eks.outputs.cluster_id
+  name = data.tfe_outputs.eks.outputs.cluster_id
 }
 
 provider "kubernetes" {
