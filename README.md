@@ -35,3 +35,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 **Pipe:** Sequence of Operations.
 
 **Observer:** Reports back to the Observable.
+
+## Workflow
+
+1. Create feature branch
+
+2. Commit changes and push
+
+3. Merges into `main` will trigger GitHub Action Terraform Workflow
+
+## Retrieve access credentials for your cluster and configure `kubectl`
+
+`aws eks --region us-east-1 update-kubeconfig --name wortech-eks-dev`
