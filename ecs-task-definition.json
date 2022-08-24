@@ -1,0 +1,16 @@
+{
+  "repository": {
+    "repositoryArn": "arn:aws:ecr:us-east-1:060696402958:repository/wortech",
+    "registryId": "060696402958",
+    "repositoryName": "wortech",
+    "repositoryUri": "060696402958.dkr.ecr.us-east-1.amazonaws.com/wortech",
+    "createdAt": "2022-08-24T14:01:55-04:00",
+    "imageTagMutability": "MUTABLE",
+    "imageScanningConfiguration": {
+      "scanOnPush": false
+    },
+    "encryptionConfiguration": {
+      "encryptionType": "AES256"
+    }
+  }
+}

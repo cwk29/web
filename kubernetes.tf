@@ -125,3 +125,72 @@ resource "kubernetes_service" "mongo" {
     }
   }
 }
+
+resource "kubernetes_deployment" "nginx" {
+  metadata {
+    name = "nginx"
+    labels {
+      app = "nginx"
+    }
+  }
+
+  spec {
+    replicas = 1
+    selector {
+      match_labels {
+        app = "nginx"
+      }
+    }
+    template {
+      metadata {
+        labels {
+          app = "nginx"
+        }
+      }
+      spec {
+        containers {
+          name  = "nginx"
+          image = "cwkuyke/wtc-nginx:latest"
+          ports {
+            container_port = 80
+          }
+          env {
+            name = "MONGO_INITDB_ROOT_USERNAME"
+            value_from {
+              secret_key_ref {
+                name = "mongo-secret"
+                key  = "username"
+              }
+            }
+          }
+          env {
+            name = "MONGO_INITDB_ROOT_PASSWORD"
+            value_from {
+              secret_key_ref {
+                name = "mongo-secret"
+                key  = "password"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "nginx" {
+  metadata {
+    name = "nginx"
+  }
+  spec {
+    type = "LoadBalancer"
+    selector {
+      app = "nginx"
+    }
+    port {
+      app_protocol = "TCP"
+      port         = 80
+      target_port  = 80
+    }
+  }
+}

@@ -47,3 +47,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Retrieve access credentials for your cluster and configure `kubectl`
 
 `aws eks --region us-east-1 update-kubeconfig --name wortech-eks-dev`
+
+## Deploy the app
+
+```sh
+$ docker build -t wtc-nginx .
+[+] Building 129.4s (16/16) FINISHED
+$ docker run --name app -d -p 8080:80 cwkuyke/wtc-nginx
+$ docker push cwkuyke/wtc-nginx
+```
