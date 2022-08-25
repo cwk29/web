@@ -14,7 +14,7 @@ terraform {
   required_version = "~> 1.2.0"
 
   cloud {
-    organization = var.tfc_org_name
+    organization = "wortech"
 
     workspaces {
       name = "web-app-dev"
