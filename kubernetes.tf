@@ -10,6 +10,16 @@ terraform {
       version = ">= 2.0.1"
     }
   }
+
+  required_version = "~> 1.2.0"
+
+  cloud {
+    organization = var.tfc_org_name
+
+    workspaces {
+      name = "web-app-dev"
+    }
+  }
 }
 
 data "tfe_outputs" "eks" {
