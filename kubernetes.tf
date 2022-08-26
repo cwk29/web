@@ -29,11 +29,11 @@ data "tfe_outputs" "eks" {
 
 # Retrieve EKS cluster information
 provider "aws" {
-  region = data.tfe_outputs.eks.outputs.region
+  region = data.tfe_outputs.eks.region.value
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = data.tfe_outputs.eks.outputs.cluster_id
+  name = data.tfe_outputs.eks.cluster_id.value
 }
 
 provider "kubernetes" {
