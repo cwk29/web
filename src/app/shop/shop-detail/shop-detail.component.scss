@@ -1,0 +1,31 @@
+@mixin input-item {
+  @apply bg-default border border-outline-default rounded-md p-2;
+}
+
+@mixin input-item-dark {
+  @apply bg-slate-800 border border-darker rounded-md p-2;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+textarea {
+  @include input-item;
+}
+
+// @media (prefers-color-scheme: dark)
+label[data-theme="dark"] {
+  color: white;
+}
+
+input[data-theme="dark"],
+textarea[data-theme="dark"] {
+  @include input-item-dark;
+
+  &:focus,
+  &:focus {
+    color: white;
+  }
+}

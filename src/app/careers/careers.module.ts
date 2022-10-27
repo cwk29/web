@@ -3,6 +3,8 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 
+import { ButtonModule } from "../components/button/button.module";
+
 // Material UI
 import { MatDividerModule } from "@angular/material/divider";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -24,6 +26,7 @@ import { CareersRoutingModule } from "./careers-routing.module";
   imports: [
     CommonModule,
     FormsModule,
+    ButtonModule,
     CareersRoutingModule,
     ReactiveFormsModule,
     MatSelectModule,

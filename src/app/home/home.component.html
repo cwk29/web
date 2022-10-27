@@ -1,65 +1,157 @@
-<!-- <div class="container w-full h-full">
-  <video class="video" autoplay loop>
-    <source src="../../assets/earth.mp4" type="video/mp4" />
-  </video>
-  <div class="video-content">
-    <h1 class="sm:text-3xl md:text-5xl">Mission Focused Technology Driven</h1>
-    <p class="max-w-xl pt-2">
-      We are experienced system, software, and hardware engineering
-      professionals with the knowledge and skills capable of designing,
-      modeling, developing, analyzing and deploying modern complex systems. We
-      focus our energy on working with our customer to deliver product and
-      service that brings mission success.
-    </p>
-  </div>
-  <div class="flex w-full p-4 h-128">
-    <video
-      class="contact-video"
-      src="../assets/footer.mp4"
-      autoplay
-      loop
-      mute
-    ></video>
-    <div class="columns">
-      <div class="flex-1">
-        <h1 class="text-5xl font-bold">Solve Your Problems.</h1>
-        <h1 class="text-5xl font-bold">Contact Us</h1>
-      </div>
-      <div class="flex-1">
-        <app-contact-form></app-contact-form>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<video class="video" autoplay loop>
+<video id="video-hero" class="video" autoplay loop>
   <source src="../../assets/earth.mp4" type="video/mp4" />
 </video>
 <div class="video-content">
   <h1 class="sm:text-3xl md:text-5xl">Mission Focused Technology Driven</h1>
-  <p class="max-w-xl pt-2">
-    We are experienced system, software, and hardware engineering professionals
-    with the knowledge and skills capable of designing, modeling, developing,
-    analyzing and deploying modern complex systems. We focus our energy on
-    working with our customer to deliver product and service that brings mission
-    success.
+  <p class="md:text-xl max-w-xl pt-2">
+    We are experienced system, software, and hardware engineering professionals with the knowledge and skills capable of
+    designing, modeling, developing, analyzing and deploying modern complex systems. We focus our energy on working with
+    our customer to deliver product and service that brings mission success.
   </p>
 </div>
-<!-- <div class="video-container">
-</div> -->
+
+<div class="hidden md:visible md:flex flex-col w-full bg-black">
+  <div class="absolute inset-0 h-0.5 bg-dark mx-4"></div>
+  <div class="flex w-full pt-5 pb-3 text-center">
+    <div class="flex-initial w-1/3">
+      <h1 class="text-5xl font-black text-white">10+</h1>
+      <p class="pt-2 text-white uppercase">Years XP</p>
+    </div>
+    <div class="flex-initial w-1/3">
+      <h1 class="text-5xl font-black text-white">100+</h1>
+      <p class="pt-2 text-white uppercase">Customers</p>
+    </div>
+    <div class="flex-initial w-1/3">
+      <h1 class="text-5xl font-black text-white">3+</h1>
+      <p class="pt-2 text-white uppercase">Awards</p>
+    </div>
+  </div>
+  <svg class="inset-0 h-full w-full" viewBox="0 0 1660 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="fill-white dark:fill-darkest" d="M0 40h1680V30S1340 0 840 0 0 30 0 30z" />
+  </svg>
+</div>
+
+<!-- About section -->
+<div class="container mx-auto py-16">
+  <div class="flex flex-wrap justify-center items-center h-96">
+    <div class="w-4/5 text-center">
+      <h1 class="section-title">
+        Welcome to
+        <!-- <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-dark to-blue-700"
+          >WorTech.</span> -->
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-400">WorTech.</span>
+      </h1>
+      <p class="section-subtitle">
+        We are a Service Disabled Veteran Owned Small Business, focused on information technology engineering services.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Capabilities section -->
+<div class="container mx-auto my-8 py-8 px-8 bg-default dark:bg-darker">
+  <h1
+    class="font-extrabold text-transparent text-4xl md:text-6xl bg-clip-text bg-gradient-to-b from-gray-700 to-blue-500 text-center py-8 uppercase tracking-widest"
+  >
+    Capabilities
+  </h1>
+  <div class="flex flex-col md:flex-row justify-evenly">
+    <div class="relative grow md:w-[20%] h-96 mb-5 md:mr-5 text-white hover:">
+      <!-- Display the video for medium resolution -->
+      <video
+        class="w-full h-full min-w-full min-h-full object-cover"
+        src="../../assets/cloud.mp4"
+        autoplay
+        loop
+        mute
+      ></video>
+      <!-- Display the image for small resolution -->
+      <!-- <img class="visible md:hidden w-full h-full min-w-full min-h-full object-cover" src="../../assets/cloud.png" /> -->
+      <div class="absolute top-0 left-0 p-2">
+        <span class="capability-topic">Cloud</span>
+      </div>
+    </div>
+    <div class="relative grow md:w-[20%] h-96 mb-5 md:mr-5 text-white">
+      <video class="w-full h-full min-w-full min-h-full object-cover" autoplay loop mute>
+        <source src="../../assets/software.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute top-0 left-0 p-2">
+        <span class="capability-topic">Software Engineering</span>
+      </div>
+    </div>
+    <div class="relative grow md:w-[20%] h-96 mb-5 md:mr-5 text-white">
+      <video
+        class="w-full h-full min-w-full min-h-full object-cover"
+        src="../../assets/hardware.mp4"
+        autoplay
+        loop
+        mute
+      ></video>
+      <div class="absolute top-0 left-0 p-2">
+        <span class="capability-topic">Systems Engineering</span>
+      </div>
+    </div>
+    <div class="relative grow md:w-[20%] h-96 text-white">
+      <video
+        class="w-full h-full min-w-full min-h-full object-cover"
+        src="../../assets/satellite.mp4"
+        autoplay
+        loop
+        mute
+      ></video>
+      <div class="absolute top-0 left-0 p-2">
+        <span class="capability-topic">Software Defined Radio</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contract Vehicles section -->
+<div class="section bg-gray-200">
+  <div class="container mx-auto pt-16 px-4">
+    <div class="flex flex-col justify-center items-center">
+      <h1 class="section-title text-black">Contract Vehicles</h1>
+      <p class="section-subtitle">Click below to learn more about each of our partners.</p>
+    </div>
+    <!-- Create a row with 5 images  -->
+    <div class="flex flex-wrap justify-center items-center space-x-8 my-6">
+      <a href="https://www.gsa.gov" target="_blank">
+        <img class="w-24 h-24 object-cover" src="../../assets/gsa.svg" alt="GSA" />
+      </a>
+      <a href="https://www.defense.gov" target="_blank">
+        <img class="w-24 h-24 object-cover" src="../../assets/dod.png" alt="DoD" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Join section -->
+<div class="section">
+  <div class="container mx-auto py-16 px-4">
+    <div class="flex justify-center items-center rounded border-2 border-blue-500">
+      <div class="w-4/5 p-4">
+        <h1 class="text-3xl md:text-5xl font-bold">3 open positions available</h1>
+        <p class="text-md md:text-xl text-accent pt-2">
+          Join our team of talented engineers and designers to build and deploy mission ready products and services.
+        </p>
+      </div>
+      <button mat-button color="primary" class="animate-bounce-x" routerLink="/careers">
+        <mat-icon class="text-2xl" aria-hidden="false" aria-label="View open positions">arrow_right_alt</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- Contact Form -->
-<div class="flex w-full p-4 h-128">
-  <video
-    class="contact-video"
-    src="../assets/footer.mp4"
-    autoplay
-    loop
-    mute
-  ></video>
+<div id="contact-us" class="flex w-full p-4 h-128">
+  <video class="hidden md:visible contact-video" src="../../assets/footer.mp4" autoplay loop mute></video>
   <div class="columns">
     <div class="flex-1">
-      <h1 class="text-5xl font-bold">Solve Your Problems.</h1>
-      <h1 class="text-5xl font-bold">Contact Us</h1>
+      <h1 class="text-3xl md:text-5xl text-darker dark:text-white font-bold">
+        Ask us anything. <br />
+        We'd love to hear from you.
+      </h1>
     </div>
     <div class="flex-1">
       <app-contact-form></app-contact-form>

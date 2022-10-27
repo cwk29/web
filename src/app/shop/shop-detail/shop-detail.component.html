@@ -1,0 +1,74 @@
+<div *ngIf="product$ | async as product" class="section h-min-screen">
+  <div class="flex flex-col md:flex-row w-full h-full py-10 px-10">
+    <!-- <a
+      class="absolute top-20"
+      [routerLink]="['/shop']"
+      aria-label="Go back to shop"
+    >
+      <button mat-button>
+        <mat-icon class="mr-3">arrow_back</mat-icon>Shop
+      </button>
+    </a> -->
+    <div class="w-full md:basis-9/12 flex flex-col lg:flex-row lg:space-x-8 m-4">
+      <!-- Product Images -->
+      <div class="w-full lg:w-1/2">
+        <div *ngFor="let image of product.images; index as i">
+          <div *ngIf="i === 0" class="flex justify-center">
+            <img class="w-full aspect-square rounded-md" [src]="image" alt="product image" />
+          </div>
+          <div *ngIf="i > 0" class="flex w-full space-x-2 mt-2">
+            <div class="basis-3/12">
+              <img class="w-full rounded-md" [src]="image" alt="product image" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Product details -->
+      <div class="w-full lg:w-1/2">
+        <div class="flex flex-col gap-4 mt-4 lg:mt-0">
+          <span class="text-primary font-bold">WorTech</span>
+          <h1 class="text-2xl font-bold">{{ product.name }}</h1>
+          <div class="flex gap-2">
+            <div class="flex flex-col gap-2">
+              <label for="quantity">Quantity:</label>
+              <div class="flex gap-4 justify-end items-center">
+                <input
+                  class="border border-outline-default dark:border-dark dark:bg-darker rounded-md p-2 w-16"
+                  type="number"
+                  name="quantity"
+                  id="quantity"
+                  min="1"
+                  max="10"
+                  value="1"
+                />
+                <div class="flex gap-2 items-center text-warning">
+                  <mat-icon>warning_amber</mat-icon>
+                  <p>Limited quantity available</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-base">
+            {{ product.description }}
+          </p>
+          <a class="max-w-fit" [href]="product.link">
+            <button mat-stroked-button><mat-icon>settings_applications</mat-icon> View Specifications</button>
+          </a>
+          <p class="text-primary font-bold">
+            * All of our products are custom made to order based on the mission need.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Right form panel -->
+    <div class="w-full md:basis-3/12 flex flex-col gap-4">
+      <div>
+        <h2 class="text-xl font-bold">Get Pricing</h2>
+        <p>Submit the form below or call for pricing and AOR information.</p>
+      </div>
+      <div class="card max-w-sm w-full mx-auto">
+        <app-shop-form></app-shop-form>
+      </div>
+    </div>
+  </div>
+</div>

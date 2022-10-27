@@ -27,7 +27,7 @@ export class CareerDetailComponent implements OnInit {
     );
   }
 
-  gotoCareer(career: Career) {
+  goToCareer(career: Career) {
     const careerId = career ? career.id : null;
     // Pass along the hero id if available
     // so that the HeroList component can select that hero.

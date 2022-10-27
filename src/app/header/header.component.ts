@@ -1,69 +1,92 @@
 import { Component, HostListener, OnInit } from "@angular/core";
 import { Output, EventEmitter } from "@angular/core";
-import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { MatOptionSelectionChange } from "@angular/material/core";
 import { Router } from "@angular/router";
+import { setUncaughtExceptionCaptureCallback } from "process";
 
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.scss"],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   title: string;
-  darkMode: boolean;
+  public isCollapsed = false;
+  public page = "home";
+
+  // theme: string | null;
   @Output() toggleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
-    let element = document.querySelector(".toolbar") as HTMLElement;
+    let element = document.querySelector("#nav") as HTMLElement;
     if (window.pageYOffset > element.clientHeight) {
-      element.classList.add("toolbar-bg");
+      element.classList.add("nav-bg");
     } else {
-      element.classList.remove("toolbar-bg");
+      element.classList.remove("nav-bg");
     }
   }
 
   constructor(private router: Router) {
-    this.darkMode = localStorage.darkMode;
-    this.title = "WorTech Corp";
+    this.title = "WorTech";
   }
 
-  ngOnInit(): void {
-    if (
-      localStorage.darkMode === "true" ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-    // this.toggleControl.valueChanges.subscribe((darkMode) => {
-    //   const darkClassName = 'dark';
-    //   this.className = darkMode ? darkClassName : '';
-    //   if (darkMode) {
-    //     document.documentElement.classList.add('dark');
-    //     // this.overlay.getContainerElement().classList.add(darkClassName);
-    //   } else {
-    //     document.documentElement.classList.remove('dark');
-    //     // this.overlay.getContainerElement().classList.remove(darkClassName);
-    //   }
-    // });
+  ngAfterViewInit(): void {
+    // Initial theme check
+    this.themeCheck();
   }
 
+  // @todo: this is loading WAY too many times
   isHomeRoute(): boolean {
-    return this.router.url === "/";
+    // console.log(this.router.url === "/");
+    if (this.router.url === "/" || this.router.url === "/#contact-us") {
+      return true;
+    }
+    return false;
   }
 
   goToContactForm() {
     console.log("clicked contact us");
   }
 
-  toggleTheme(event: MatSlideToggleChange) {
-    this.darkMode = event.checked;
-    localStorage.darkMode = event.checked;
-    localStorage.darkMode === "true"
-      ? document.body.classList.add("dark")
-      : document.body.classList.remove("dark");
-    // this.toggleChange.emit(event.checked);
+  themeCheck() {
+    // Icons
+    const sunIcon = document.getElementById("sun")!;
+    const moonIcon = document.getElementById("moon")!;
+
+    // Theme variables
+    const userTheme = localStorage.getItem("color-theme");
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    // if set via local storage previously or if system theme is dark and user theme is not set
+    if (userTheme === "dark" || (!userTheme && systemTheme)) {
+      document.documentElement.classList.add("dark");
+      moonIcon.classList.add("display-none");
+      return;
+    }
+    sunIcon.classList.add("display-none");
+  }
+
+  toggleIcon() {
+    // Icons
+    const sunIcon = document.getElementById("sun")!;
+    const moonIcon = document.getElementById("moon")!;
+
+    // toggle icons inside button
+    sunIcon.classList.toggle("display-none");
+    moonIcon.classList.toggle("display-none");
+  }
+
+  // Switch the themes on click
+  toggleTheme() {
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      this.toggleIcon();
+      return;
+    }
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    this.toggleIcon();
   }
 }

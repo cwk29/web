@@ -1,0 +1,29 @@
+// Make li elements have a blue linear gradient bullet point
+@keyframes color-change {
+  0% {
+    background: rgb(5, 126, 201);
+  }
+  50% {
+    background: rgb(5, 201, 126);
+  }
+  100% {
+    background: rgb(5, 126, 201);
+  }
+}
+
+ul {
+  margin: 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+li {
+  list-style-type: disc;
+  padding-bottom: 0.25rem;
+  &::marker {
+    font-size: 1.5rem;
+    margin-top: 2px;
+    padding-top: 2px;
+    color: #1d4ed8;
+  }
+}

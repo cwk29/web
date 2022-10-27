@@ -1,0 +1,108 @@
+<div *ngIf="blog$ | async as blog">
+  <div class="section min-h-[50vh]">
+    <div class="container mx-auto pt-16">
+      <div class="flex flex-wrap justify-center items-center text-center">
+        <div class="w-4/5 p-8">
+          <p class="uppercase tracking-wider">Blog</p>
+          <h1 class="section-title">{{ blog.title }}</h1>
+        </div>
+        <div class="w-1/3 h-1 bg-default dark:bg-darker"></div>
+      </div>
+      <div class="flex justify-center items-center text-accent space-x-1 md:space-x-2 mt-4 text-xs md:text-base">
+        <div class="flex items-center space-x-0 md:space-x-2">
+          <mat-icon class="scale-75 md:scale-100">calendar_today</mat-icon>
+          <span>{{ blog.date }}</span>
+        </div>
+        <div class="flex items-center space-x-0 md:space-x-2">
+          <mat-icon class="scale-75 md:scale-100">person</mat-icon>
+          <span>{{ blog.author }}</span>
+        </div>
+        <div class="flex items-center space-x-0 md:space-x-2">
+          <mat-icon class="scale-75 md:scale-100">folder</mat-icon>
+          <span
+            ><a routerLink="">{{ blog.category }}</a></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section mt-4">
+    <div class="container mx-auto">
+      <!-- Blog details page -->
+      <div class="flex flex-wrap justify-center items-center">
+        <article class="w-4/5 lg:w-1/2">
+          <section *ngFor="let section of blog.sections; index as s">
+            <header *ngIf="section.title">
+              {{ section.title }}
+            </header>
+            <p
+              *ngFor="let content of section.content; index as c"
+              class="section-content text-base lg:text-lg text-justify lg:leading-loose indent-8 pb-4"
+            >
+              {{ content }}
+            </p>
+          </section>
+        </article>
+      </div>
+      <div class="flex max-w-lg mx-auto my-4 justify-between p-8 bg-default dark:bg-darker">
+        <div class="flex flex-col justify-center">
+          <h3 class="font-bold tracking-widest uppercase">Tags</h3>
+          <a *ngFor="let tag of blog.tags" [routerLink]="['/tags', tag]" class="tracking-wider uppercase">{{ tag }}</a>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+          <h3 class="font-bold tracking-widest uppercase">Share</h3>
+          <ul class="list-style-none flex flex-row-reverse items-center my-3 sm:mb-0 leading-none">
+            <li class="mr-3">
+              <button (click)="shareToSocial('linkedin')" class="Link--secondary">
+                <img
+                  src="https://github.githubassets.com/images/modules/site/icons/footer/linkedin.svg"
+                  height="15"
+                  width="18"
+                  class="d-block"
+                  loading="lazy"
+                  decoding="async"
+                  alt="LinkedIn icon"
+                />
+              </button>
+            </li>
+            <li class="mr-3">
+              <button (click)="shareToSocial('facebook')" class="Link--secondary">
+                <img
+                  src="https://github.githubassets.com/images/modules/site/icons/footer/facebook.svg"
+                  height="18"
+                  width="22"
+                  class="d-block"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Facebook icon"
+                />
+              </button>
+            </li>
+            <li class="mr-3">
+              <button (click)="shareToSocial('twitter')" class="Link--secondary">
+                <img
+                  src="https://github.githubassets.com/images/modules/site/icons/footer/twitter.svg"
+                  height="18"
+                  width="22"
+                  class="d-block"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Twitter icon"
+                />
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <!-- <div class="h-1 bg-slate-200"></div>
+    <mat-icon>local_offer</mat-icon>
+    <span *ngFor="let tag of blog.tags"
+      ><a href="">{{ tag }}</a></span
+    >
+    </div> -->
+    </div>
+  </div>
+</div>

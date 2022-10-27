@@ -1,0 +1,36 @@
+.benefits-card {
+  @apply w-72 h-80 shrink-0 flex flex-col justify-evenly items-center rounded-md p-4;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.blur {
+  backdrop-filter: blur(4px);
+}
+
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-x-container {
+  @apply snap-center min-w-full overflow-x-auto flex lg:justify-center space-x-12 px-16;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+
+  mat-icon {
+    margin-right: 1rem;
+  }
+  & + li {
+    margin-top: 1rem;
+  }
+}

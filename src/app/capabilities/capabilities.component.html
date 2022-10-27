@@ -1,0 +1,170 @@
+<div class="section min-h-[80vh]">
+  <div class="container mx-auto py-16">
+    <div class="flex flex-wrap justify-center items-center text-center">
+      <div class="w-4/5 p-8">
+        <h1 class="section-title">What we do.</h1>
+        <p class="section-subtitle">
+          WorTech combines innovative thinking with cutting-edge technology. We
+          assist civilian, defense, and intelligence organizations in managing
+          change and overcoming obstacles. We've been advancing the warfighter
+          for more than 10 years with our expertise in information technology
+          and engineering services.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Engineering Services-->
+<div class="section">
+  <div
+    class="container flex flex-col md:flex-row-reverse justify-center items-center mx-auto my-16"
+  >
+    <div class="w-full md:w-1/2 h-96 shrink bg-engineer bg-cover"></div>
+    <div
+      class="w-4/5 md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-16 md:mt-0 md:-mr-16 py-12 px-6 md:translate-y-10"
+    >
+      <div>
+        <h1 class="text-3xl font-black">Engineering Services</h1>
+        <ul>
+          <li>Interface Requirements</li>
+          <li>Integrated Technical and Functional Solutions</li>
+          <li>Interoperability (IOP) Evaluation</li>
+          <li>Systems Integration and Test</li>
+          <li>Systems Deployment to the Warfighter</li>
+          <li>Systems Engineering and Technical Assistance (SETA)</li>
+        </ul>
+        <app-button
+          label="View All Capabilities"
+          (btnClick)="onClick()"
+          [isDisabled]="false"
+          ><a
+            href="https://www.wortechcorp.com/pdf/WorTech_Capabilities.pdf"
+            target="_blank"
+          ></a
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Software Development -->
+<div class="section">
+  <div
+    class="container flex flex-col md:flex-row justify-center items-center mx-auto py-16"
+  >
+    <div class="w-full md:w-1/2 h-96 shrink bg-manpack bg-cover"></div>
+    <div
+      class="w-4/5 md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-16 md:mt-0 md:-ml-16 py-12 px-6 md:translate-y-10"
+    >
+      <div>
+        <h1 class="text-3xl font-black">Software Engineering</h1>
+        <ul>
+          <li>Interface Mitigation</li>
+          <li>Direction Finding</li>
+          <li>Geo-Location</li>
+          <li>Software-Defined Radio</li>
+          <li>Protocol-Layer Processing</li>
+          <li>Digitized RF Distribution & Channelization</li>
+        </ul>
+        <app-button
+          routerLink="software-engineering"
+          label="View All Capabilities"
+          (btnClick)="onClick()"
+          [isDisabled]="false"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Systems & Software Integration -->
+<div class="section">
+  <div
+    class="container flex flex-col md:flex-row-reverse justify-center items-center mx-auto py-16"
+  >
+    <div class="w-full md:w-1/2 h-96 shrink bg-hardware bg-cover"></div>
+    <div
+      class="w-4/5 md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-16 md:mt-0 md:-mr-16 py-12 px-6 md:translate-y-10"
+    >
+      <div>
+        <h1 class="text-3xl font-black">Systems & Software Integration</h1>
+        <ul>
+          <li>Service Oriented Architecture (SOA)</li>
+          <li>Network Computing</li>
+          <li>Embedded Processors</li>
+          <li>Custom Hardware Drivers</li>
+          <li>Software Integration Testing (SWIT)</li>
+          <li>Java, C/C++, .Net, CORBA, ServiceMix, OSGi, ARM, REDHAWK SDR</li>
+        </ul>
+        <app-button
+          routerLink="systems-software-integration"
+          label="View All Capabilities"
+          (btnClick)="onClick()"
+          [isDisabled]="false"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Web-Based Architecture -->
+<div class="section">
+  <div
+    class="container flex flex-col md:flex-row justify-center items-center mx-auto py-16"
+  >
+    <div class="w-full md:w-1/2 h-96 shrink bg-design bg-cover"></div>
+    <div
+      class="w-4/5 md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-16 md:mt-0 md:-ml-16 py-12 px-12 md:translate-y-10"
+    >
+      <div>
+        <h1 class="text-3xl font-black">Web-Based Architecture</h1>
+        <ul>
+          <li>Portal Architecture & Development</li>
+          <li>Middle-Tier Architecture & Development</li>
+          <li>Enterprise Messaging & Workflow</li>
+          <li>
+            HTML, JavaScript, AJAX, XML, XSL, CSS, Ozone Widget Framework, GWT
+          </li>
+        </ul>
+        <app-button
+          routerLink="web-development"
+          label="View All Capabilities"
+          (btnClick)="onClick()"
+          [isDisabled]="false"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cloud Computing -->
+<div class="section">
+  <div
+    class="container flex flex-col md:flex-row-reverse justify-center items-center mx-auto py-16"
+  >
+    <div class="w-full md:w-1/2 h-96 shrink bg-cloud bg-cover"></div>
+    <div
+      class="w-4/5 md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-16 md:mt-0 md:-mr-16 py-12 px-6 md:translate-y-10"
+    >
+      <div>
+        <h1 class="text-3xl font-black">Cloud Computing</h1>
+        <ul>
+          <li>Cloud Architecture & Development</li>
+          <li>Data Compression/Encryption</li>
+          <li>Parasitic Extraction/Data Scaling</li>
+          <li>Structured / Relational / Unstructured Data</li>
+          <li>Big Data</li>
+          <li>Performance & Tuning</li>
+          <li>JDBC, Hibernate, SQL, LDAP, PKI, OpenSSL, JMS</li>
+        </ul>
+        <app-button
+          routerLink="cloud"
+          label="View All Capabilities"
+          (btnClick)="onClick()"
+          [isDisabled]="false"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>

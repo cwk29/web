@@ -1,6 +1,102 @@
-<footer class="flex w-full bg-gray-700">
-  <div class="columns">
-    <div class="flex-1">column 1</div>
-    <div class="flex-1">column 2</div>
+<footer class="bg-darker dark:bg-gray-900">
+  <div class="container mx-auto">
+    <div class="w-full flex flex-wrap justify-evenly">
+      <!-- Create a 3 column flex box -->
+      <div class="basis-1/4 shrink px-3">
+        <a href="/" aria-label="Go to WorTech homepage">
+          <mat-icon id="footerLogo" svgIcon="wortech" color="primary" aria-hidden="true"></mat-icon>
+        </a>
+      </div>
+      <div class="basis-1/4 shrink px-3 pb-3 lg:pb-0">
+        <h3 class="text-sm md:text-lg font-semibold text-center">
+          <a href="/company">About</a>
+        </h3>
+        <ul class="list-none text-xs md:text-base">
+          <li class="flex items-center">
+            <mat-icon class="w-4 h-4 m-2" color="primary" aria-hidden="true">email</mat-icon>
+            <a href="mailto:info@wortechcorp.com" class="text-gray-400">info@wortechcorp.com</a>
+          </li>
+          <li class="mt-2">
+            <div class="flex items-center">
+              <mat-icon class="w-4 h-4 m-2" color="primary" aria-hidden="true">phone</mat-icon>
+              <a href="tel:+1-443-496-0783" class="text-gray-400">(443) 496-0783</a>
+            </div>
+          </li>
+          <li class="mt-2">
+            <div class="flex items-center flex-wrap">
+              <a
+                href="https://maps.google.com/?q=9175+Guilford+Rd+Suite+#+205+Columbia+MD+21046"
+                class="text-gray-400 sm:text-xs"
+                target="_blank"
+                ><mat-icon class="w-4 h-4 m-2" color="primary" aria-hidden="true">business</mat-icon>9175 Guilford Rd
+                Suite 205, Columbia, MD 21046</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="basis-1/4 px-3 shrink text-center">
+        <h3 class="text-sm md:text-lg font-semibold">Certifications</h3>
+        <ul class="list-reset text-xs md:text-base">
+          <li class="mt-2 text-gray-400">Service-Disabled, Veteran-Owned Small Business</li>
+          <li class="mt-2">
+            <img class="w-24 rounded-full mx-auto" src="../../assets/sdvosb.jpeg" alt="SDVOSB logo" />
+          </li>
+          <li class="my-2 text-base">
+            <a href="https://wortechcorp.atlassian.net/wiki/spaces/WOR/overview?mode=global">Employee Portal</a>
+          </li>
+        </ul>
+      </div>
+      <div class="w-1/4">
+        <h3 class="text-sm md:text-lg font-semibold text-center">Coordinates</h3>
+        <ul class="list-none text-xs md:text-base">
+          <li class="mt-2 text-gray-400"><strong>DUNS:</strong> 07-838-0779</li>
+          <li class="mt-2 text-gray-400"><strong>UEID:</strong> VWNFM5MXVG46</li>
+          <li class="mt-2 text-gray-400"><strong>CAGE:</strong> 6NKL3</li>
+          <li class="mt-2 text-gray-400">
+            <strong>NAICS:</strong> 332510, 541330, 541511, 541512, 541519, 541690, 541990, 928110
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="site-social">
+    <div class="container mx-auto p-3 flex justify-between flex-col md:flex-row-reverse items-center">
+      <app-social-icons></app-social-icons>
+      <ul class="list-style-none flex flex-wrap text-gray-400 text-xs md:text-base">
+        <li class="mr-3">
+          <a
+            href=""
+            data-analytics-event='{"category":"Footer","action":"go to home","label":"text:home"}'
+            class="Link--secondary"
+            >@ 2022 WorTech Corp</a
+          >
+        </li>
+        <li class="mr-3">
+          <a
+            href="terms"
+            data-analytics-event='{"category":"Footer","action":"go to terms","label":"text:terms"}'
+            class="Link--secondary"
+            >Terms</a
+          >
+        </li>
+        <li class="mr-3">
+          <a
+            href="privacy"
+            data-analytics-event='{"category":"Footer","action":"go to privacy","label":"text:privacy"}'
+            class="Link--secondary"
+            >Privacy</a
+          >
+        </li>
+        <li class="mr-3">
+          <a
+            href="sitemap"
+            data-analytics-event='{"category":"Footer","action":"go to sitemap","label":"text:sitemap"}'
+            class="Link--secondary"
+            >Site Map</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </footer>

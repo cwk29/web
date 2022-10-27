@@ -1,0 +1,39 @@
+<div class="section h-min-screen my-10">
+  <div class="flex flex-col lg:flex-row w-full h-full px-10 space-y-4 lg:space-y-0">
+    <div class="w-full lg:basis-9/12 h-fit flex flex-wrap">
+      <div
+        [routerLink]="['/shop', product.id]"
+        *ngFor="let product of products$ | async; index as i"
+        class="shrink w-72 h-fit mr-8 cursor-pointer"
+      >
+        <div class="shrink flex flex-col justify-center items-center">
+          <div class="w-full aspect-square shrink-0">
+            <img class="w-full h-full rounded-md" [src]="product.images[0]" [alt]="product.name" />
+          </div>
+          <article class="m-3">
+            <header class="font-semibold text-xl">{{ product.name }}</header>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:basis-3/12 flex flex-col gap-4">
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold">Custom RF Design & Manufacturing</h2>
+        <p>
+          We offer a wide range of specialized SIGINT software services and high performance, rugged RF and mixed signal
+          hardware solutions for demanding customer needs and environments. WorTech SIGINT solutions are developed to
+          support and defend our great nation and its allies, not to take advantage of the market space. Thus, we can
+          provide cost effective solutions much lower than competing vendors that inflate pricing to cover huge overhead
+          expenses.
+        </p>
+        <p>
+          WorTech's SIGINT adaptive engineering group is a forward thinking team of engineers that performs efficiently
+          with one goal in mind… to provide customers with versatile solutions that guarantee mission success!
+        </p>
+        <p>Items developed are subject to ITAR and may require an export license by the State department.</p>
+        <p class="font-semibold">Tell us what you're looking for! We'll customize the product just for you.</p>
+      </div>
+      <app-shop-form></app-shop-form>
+    </div>
+  </div>
+</div>

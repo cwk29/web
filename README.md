@@ -1,4 +1,4 @@
-# Ui
+# UI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
@@ -56,3 +56,76 @@ $ docker build -t wtc-nginx .
 $ docker run --name app -d -p 8080:80 cwkuyke/wtc-nginx
 $ docker push cwkuyke/wtc-nginx
 ```
+
+## Internationalization for Spanish
+
+Install dependencies
+
+`ng add @angular/localize`
+
+Update `angular.json
+
+```json
+{
+  "projects": {
+    "ui": {
+      ...
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "es": {
+            "translation": "src/locale/messages.es.xlf",
+            "baseHref": ""
+          }
+        }
+      },
+      ...
+      "architect": {
+        "build": {
+          "options": {
+            "locales": [
+              "en",
+              "es"
+            ],
+            "i18nMissingTranslation": "error"
+          },
+          "configurations": {
+            "es": {
+              "localize": ["es"]
+            }
+        },
+        "serve": {
+          ...
+          "configurations": {
+            "es": {
+              "browserTarget": "ui:build:es"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Look for Opportunities to Internationalize (OTI).
+
+Mark all of the elements that require translation using `i18n` and `i18n-alt` directives.
+
+Extract the elements marked for translation:
+
+`ng extract-i18n --output-path src/locale`
+
+Make a copy of the `src/locale/messages.xlf` file for each supported locales (just `messages.es.xlf` in our case).
+
+Add a sibling element called `<target>` to each `<source>` element with the translated text.
+
+Run the application:
+
+`ng serve --configuration=es`
+
+Build the application (outputs to dist/ui):
+
+`ng build --localize`
+
+If you serve the application, you will be able to view each language code base at `url:PORT/en` and `url:PORT/es`

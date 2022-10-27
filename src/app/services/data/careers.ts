@@ -20,6 +20,7 @@ export const CAREERS = [
       "7+ years of overall experience",
     ],
     certifications: [],
+    link: "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=4882e721-168d-4f1b-97e6-67dab2b4d5fc&ccId=19000101_000001&jobId=481295&lang=en_US&source=EN",
   },
   {
     id: "2",
@@ -39,6 +40,7 @@ export const CAREERS = [
       "7+ years of overall experience",
     ],
     certifications: [],
+    link: "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=4882e721-168d-4f1b-97e6-67dab2b4d5fc&ccId=19000101_000001&lang=en_US",
   },
   {
     id: "3",
@@ -59,5 +61,6 @@ export const CAREERS = [
       "2+ years of overall experience",
     ],
     certifications: [],
+    link: "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=4882e721-168d-4f1b-97e6-67dab2b4d5fc&ccId=19000101_000001&lang=en_US",
   },
 ];

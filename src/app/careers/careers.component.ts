@@ -5,7 +5,7 @@ import { Career } from "src/app/models/Career";
 import { Location } from "src/app/models/Location";
 import { CareersService } from "src/app/services/careers.service";
 import { CLEARANCE } from "src/app/services/data/clearance";
-import { startWith, map, switchMap } from "rxjs/operators";
+import { startWith, map, switchMap, filter } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
 
 interface Clearance {
@@ -26,13 +26,13 @@ export const CLEARANCES = [
 ];
 
 export const CATEGORIES = [
-  { value: "Software Development" },
   { value: "Cloud" },
-  { value: "Network Engineering" },
-  { value: "Software Systems Engineering" },
   { value: "Hardware Engineering" },
-  { value: "Systems Administrator" },
   { value: "ISSE" },
+  { value: "Network Engineering" },
+  { value: "Software Engineering" },
+  { value: "Software Systems Engineering" },
+  { value: "Systems Administrator" },
   { value: "Systems Engineering" },
 ];
 
@@ -61,21 +61,20 @@ export class CareersComponent implements OnInit {
   searchControl: FormControl<string | null>;
   options: string[] = [];
   filteredOptions: Observable<string[]>;
+  filteredCareers: Observable<Career[]>;
+  // filteredChips: Observable<string[]>;
 
   clearanceChips: string[];
   categoryChips: string[];
   locationChips: string[];
+  filterChips: string[];
 
   clearanceControl: FormControl;
   categoryControl: FormControl;
   locationControl: FormControl;
   form: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private careersService: CareersService,
-    private route: ActivatedRoute
-  ) {
+  constructor(private formBuilder: FormBuilder, private careersService: CareersService, private route: ActivatedRoute) {
     // this.careers = [];
     this.clearances = [];
     this.categories = [];
@@ -84,10 +83,13 @@ export class CareersComponent implements OnInit {
     this.options = [];
     this.searchTopic = "";
     this.filteredOptions = new Observable<string[]>();
+    this.filteredCareers = new Observable<Career[]>();
+    // this.filteredChips = new Observable<string[]>();
     this.resultCount = 0;
     this.clearanceChips = [];
     this.categoryChips = [];
     this.locationChips = [];
+    this.filterChips = [];
 
     this.clearanceControl = new FormControl("");
     this.categoryControl = new FormControl("");
@@ -106,9 +108,6 @@ export class CareersComponent implements OnInit {
         return this.careersService.getCareers();
       })
     );
-    // this.careersService.getCareers().subscribe((careers: Career[]) => {
-    //   this.careers = careers;
-    // });
     this.clearances = CLEARANCES.map((clearance) => {
       return clearance;
     });
@@ -126,55 +125,115 @@ export class CareersComponent implements OnInit {
       startWith(""),
       map((value: string | null) => this._filter(value || ""))
     );
+    this.filteredCareers = this.careers$;
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter((option) =>
-      option.toLowerCase().includes(filterValue)
+    return this.options.filter((option) => option.toLowerCase().includes(filterValue));
+  }
+
+  private _filterCareers(values: string[]): void {
+    this.filteredCareers = this.careers$.pipe(
+      map((careers) => {
+        // return all careers that match the filtered values
+        return careers.filter((career) => {
+          // return true if values is found in any of the career's properties
+          return values.some((value) => {
+            return (
+              career.title.toLowerCase().includes(value.toLowerCase()) ||
+              career.description.toLowerCase().includes(value.toLowerCase()) ||
+              career.location.toLowerCase().includes(value.toLowerCase()) ||
+              career.category.toLowerCase().includes(value.toLowerCase()) ||
+              career.clearanceLevel.toLowerCase().includes(value.toLowerCase())
+            );
+          });
+        });
+      })
     );
+    this.filteredCareers.subscribe((careers) => {
+      this.resultCount = careers.length;
+    });
+  }
+
+  removeFilter(filter: string): void {
+    // remove filter from filters array
+    const index = this.filterChips.indexOf(filter);
+
+    if (index >= 0) {
+      // this.clearanceChips.splice(index, 1);
+      this.filterChips.splice(index, 1);
+      this._filterCareers(this.filterChips);
+    }
+
+    if (this.filterChips.length === 0) {
+      this.filteredCareers = this.careers$;
+      this.searchTopic = "";
+    }
+  }
+
+  searchCareers() {
+    this.searchTopic = this.searchControl.value!.toLowerCase();
+    if (this.searchTopic) {
+      this._filterCareers([this.searchTopic]);
+
+      // scroll to id of search results
+      const el = document.getElementById("searchResults");
+      if (el) {
+        el.scrollIntoView();
+      }
+    }
   }
 
   onClearanceChange(event: any) {
     const index = this.clearanceChips.indexOf(event.value);
 
     if (index === -1) {
-      this.clearanceChips.push(event.value);
+      this.filterChips.push(event.value);
+      this._filterCareers(this.filterChips);
     }
-    // this.form.patchValue({ productId: null });
   }
 
   onCategoryChange(event: any) {
     const index = this.categoryChips.indexOf(event.value);
 
     if (index === -1) {
-      this.categoryChips.push(event.value);
-    }
-    // this.form.patchValue({ productId: null });
-  }
-
-  removeClearance(clearance: string): void {
-    const index = this.clearanceChips.indexOf(clearance);
-
-    if (index >= 0) {
-      this.clearanceChips.splice(index, 1);
+      this.filterChips.push(event.value);
+      this._filterCareers(this.filterChips);
     }
   }
 
-  removeCategory(category: string): void {
-    const index = this.categoryChips.indexOf(category);
+  onLocationChange(event: any) {
+    const index = this.locationChips.indexOf(event.value);
 
-    if (index >= 0) {
-      this.categoryChips.splice(index, 1);
+    if (index === -1) {
+      this.filterChips.push(event.value);
+      this._filterCareers(this.filterChips);
     }
   }
 
-  // removeLocation(location: string): void {
-  //   const index = this.locationFilters.indexOf(location);
+  // removeClearance(clearance: string): void {
+  //   const index = this.clearanceChips.indexOf(clearance);
 
   //   if (index >= 0) {
-  //     this.locationFilters.splice(index, 1);
+  //     this.clearanceChips.splice(index, 1);
+  //   }
+  // }
+
+  // removeCategory(category: string): void {
+  //   const index = this.categoryChips.indexOf(category);
+
+  //   if (index >= 0) {
+  //     this.categoryChips.splice(index, 1);
+  //   }
+  // }
+
+  // removeLocation(location: string): void {
+  //   const index = this.locationChips.indexOf(location);
+
+  //   if (index >= 0) {
+  //     this.locationChips.splice(index, 1);
   //   }
   // }
 }

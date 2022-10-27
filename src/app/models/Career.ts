@@ -1,5 +1,3 @@
-import { Location } from "./Location";
-
 export interface Career {
   id: string;
   clearanceLevel: string;
@@ -11,4 +9,5 @@ export interface Career {
   capabilities: Array<string>;
   experience: Array<string>;
   certifications?: Array<string>;
+  link: string;
 }

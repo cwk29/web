@@ -1,86 +1,205 @@
-<header class="flex-none">
-  <div class="toolbar">
-    <div
-      class="flex flex-row justify-center items-center cursor-pointer"
-      [routerLink]="['/']"
-    >
+<!-- <header class="flex-none">
+  <div class="toolbar" [ngClass]="{ fixed: isHomeRoute() }">
+    <div class="flex flex-row justify-center items-center cursor-pointer" [routerLink]="['/']">
       <div class="flex-none">
-        <img src="../assets/logo.png" width="96" />
+        <img alt="wortech logo" i18n-alt src="../assets/logo.png" width="96" />
       </div>
       <div class="flex-none">
-        <h1
-          class="dark:text-white text-xl font-bold"
-          [ngClass]="{ 'text-white': isHomeRoute }"
-        >
+        <h1 i18n class="text-xl font-bold" [ngClass]="{ 'text-white': isHomeRoute() }">
           {{ title }}
         </h1>
       </div>
     </div>
     <div class="flex-1">
-      <!-- Navigation -->
       <nav (scroll)="onWindowScroll()">
         <ul>
           <li>
-            <a routerLink="company">Company</a>
+            <a i18n routerLink="company" [ngClass]="{ 'text-white': isHomeRoute() }">Company</a>
           </li>
           <li>
-            <a routerLink="capabilities">Capabilities</a>
+            <div class="flex" onfocus>
+              <a i18n routerLink="capabilities" [ngClass]="{ 'text-white': isHomeRoute() }">Capabilities</a>
+            </div>
           </li>
           <li>
-            <a routerLink="industries">Industries</a>
+            <a i18n routerLink="shop" [ngClass]="{ 'text-white': isHomeRoute() }">Shop</a>
+          </li>
+
+          <li>
+            <a i18n routerLink="blog" [ngClass]="{ 'text-white': isHomeRoute() }">Blog</a>
           </li>
           <li>
-            <a routerLink="careers">Careers</a>
+            <a i18n routerLink="careers" [ngClass]="{ 'text-white': isHomeRoute() }">Careers</a>
           </li>
         </ul>
       </nav>
     </div>
     <div class="theme-container">
       <button
-        mat-mini-fab
-        disabled
-        aria-label="Switch between dark and light mode (light mode)"
+        id="theme-toggle"
+        type="button"
+        (click)="toggleTheme()"
+        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
       >
-        <mat-icon>light_mode</mat-icon>
-      </button>
-      <mat-slide-toggle
-        color="primary"
-        [checked]="darkMode"
-        (change)="toggleTheme($event)"
-      >
-      </mat-slide-toggle>
-      <button
-        mat-mini-fab
-        disabled
-        aria-label="Switch between dark and light mode (dark mode)"
-      >
-        <mat-icon>dark_mode</mat-icon>
+        <svg id="moon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+        <svg id="sun" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
       </button>
     </div>
   </div>
-  <!-- <header class="absolute w-full p-4 z-10"> -->
-  <!-- <div class="flex justify-between items-end">
-    <h1 class="text-white text-xl font-extrabold align-bottom">WorTech Corp</h1>
-    <img src="../assets/logo.png" width="96" />
-    <div class="flex justify-center items-center bg-green-500">
-      <div class="flex justify-center items-center mx-2 bg-yellow-500">
-        <button
-          mat-fab
-          color="primary"
-          aria-label="Switch between dark and light mode"
-          (click)="toggleTheme()"
+</header> -->
+<header class="flex-none">
+  <nav id="nav" class="z-10 w-screen flex flex-col" [ngClass]="{ fixed: isHomeRoute() }" (scroll)="onWindowScroll()">
+    <div class="w-full px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button
+            type="button"
+            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            (click)="isCollapsed = !isCollapsed"
+            aria-controls="mobile-menu"
+            [attr.aria-expanded]="isCollapsed"
+          >
+            <span class="sr-only">Open main menu</span>
+            <!--
+                Icon when menu is closed.
+    
+                Heroicon name: outline/bars-3
+    
+                Menu open: "hidden", Menu closed: "block"
+              -->
+            <svg
+              class="block h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!--
+                Icon when menu is open.
+    
+                Heroicon name: outline/x-mark
+    
+                Menu open: "block", Menu closed: "hidden"
+              -->
+            <svg
+              class="hidden h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+            <button [routerLink]="['/']">
+              <img class="block h-8 w-auto lg:hidden" alt="WorTech Corp" i18n-alt src="../assets/logo.png" />
+              <img class="hidden h-8 w-auto lg:block" alt="WorTech Corp" i18n-alt src="../assets/logo.png" />
+            </button>
+            <!-- <img
+              class="block h-8 w-auto lg:hidden"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+              alt="Your Company"
+            />
+            <img
+              class="hidden h-8 w-auto lg:block"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+              alt="Your Company"
+            /> -->
+          </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <!-- <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page"
+                >Home</a
+              > -->
+              <a i18n routerLink="company" routerLinkActive="active-link">Company</a>
+              <a i18n routerLink="shop" routerLinkActive="active-link">Shop</a>
+              <a i18n routerLink="blog" routerLinkActive="active-link">Blog</a>
+              <a i18n routerLink="careers" routerLinkActive="active-link">Careers</a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="theme-container absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
-          <mat-icon>{{
-            icon_theme === "light" ? "light_mode" : "dark_mode"
-          }}</mat-icon>
-        </button>
+          <!-- <button
+          type="button"
+          class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+        >
+          <span class="sr-only">View notifications</span>
+          <svg
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+            />
+          </svg>
+        </button> -->
+          <button
+            id="theme-toggle"
+            type="button"
+            (click)="toggleTheme()"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+          >
+            <svg id="moon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="sun" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
-      <app-button
-        mat-stroked-button
-        class="text-white"
-        (btnClick)="goToContactForm()"
-        >Contact Us</app-button
-      >
     </div>
-  </div> -->
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div
+      [hidden]="!isCollapsed"
+      class="sm:hidden"
+      class="bg-white dark:bg-darker"
+      [ngClass]="{ 'bg-gray-800': isHomeRoute() }"
+      id="mobile-menu"
+    >
+      <div class="space-y-1 px-2 pt-2 pb-3" (click)="isCollapsed = !isCollapsed">
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <!-- <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page"
+          >Home</a
+        > -->
+        <a i18n routerLink="company" routerLinkActive="active-link" class="block">Company</a>
+        <a i18n routerLink="shop" routerLinkActive="active-link" class="block">Shop</a>
+        <a i18n routerLink="blog" routerLinkActive="active-link" class="block">Blog</a>
+        <a i18n routerLink="careers" routerLinkActive="active-link" class="block">Careers</a>
+      </div>
+    </div>
+  </nav>
 </header>

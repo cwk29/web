@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer, Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-root",
@@ -9,11 +9,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class AppComponent {
   title = "WorTech Corp";
-  private isDark = false;
 
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domsanitizer: DomSanitizer
+    private domsanitizer: DomSanitizer,
+    private titleService: Title
   ) {
     this.matIconRegistry.addSvgIcon(
       "wortech",
@@ -21,6 +21,7 @@ export class AppComponent {
         "../assets/Wortech-Logo-S-Standard.svg"
       )
     );
+    this.titleService.setTitle($localize`${this.title}`);
   }
 
   ngAfterViewInit() {
@@ -42,6 +43,10 @@ export class AppComponent {
     // this.isDark
     //   ? document.body.classList.add("dark")
     //   : document.body.classList.remove("dark");
+  }
+
+  onActivate(event: any) {
+    window.scroll(0, 0);
   }
 
   // removeTheme() {

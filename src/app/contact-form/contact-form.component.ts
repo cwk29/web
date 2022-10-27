@@ -1,7 +1,9 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, Output } from "@angular/core";
+import { Component, OnDestroy, OnInit, Output } from "@angular/core";
+import { Apollo, gql } from "apollo-angular";
 import { Validators, FormGroup, FormControl } from "@angular/forms";
-import { ReCaptchaV3Service } from "ng-recaptcha";
+import { OnExecuteData, OnExecuteErrorData, ReCaptchaV3Service } from "ng-recaptcha";
+import { Subscription } from "rxjs";
+import { ContactService } from "../services/contact.service";
 
 type Contact = {
   name: string;
@@ -13,7 +15,7 @@ type Contact = {
   templateUrl: "./contact-form.component.html",
   styleUrls: ["./contact-form.component.scss"],
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, OnDestroy {
   contactForm: FormGroup;
   validationMessage: string;
   topics: Array<string> = [
@@ -27,12 +29,19 @@ export class ContactFormComponent implements OnInit {
     "Small Business Inquiry",
     "Website Feedback",
   ];
-  siteKey: string = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
+  serverMessage: any;
+  loading = false;
+  error: any;
 
-  constructor(
-    private recaptchaV3Service: ReCaptchaV3Service,
-    private http: HttpClient
-  ) {
+  public recentToken = "";
+  public recentError?: { error: any };
+  public readonly executionLog: Array<OnExecuteData | OnExecuteErrorData> = [];
+
+  private subscription: Subscription | undefined;
+
+  public log: string[] = [];
+
+  constructor(private recaptchaV3Service: ReCaptchaV3Service, private contactService: ContactService) {
     this.validationMessage = "";
     this.contactForm = new FormGroup({
       name: new FormControl("", Validators.required),
@@ -40,38 +49,62 @@ export class ContactFormComponent implements OnInit {
       organization: new FormControl(""),
       topic: new FormControl("", Validators.required),
       message: new FormControl("", Validators.required),
-      recaptcha: new FormControl("", Validators.required),
+      // recaptcha: new FormControl("", Validators.required),
     });
   }
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.subscription = this.recaptchaV3Service.onExecute.subscribe((data: OnExecuteData) => {
+      this.handleRecaptchaExecute(data.action, data.token);
+    });
 
-  update(e: any) {
-    console.log(e);
-    this.contactForm.setValue({ topic: e.target.value });
+    // this.serverMessage = this.contactService.getGreeting();
   }
 
-  // onSubmit(token: any) {
-  //   // TODO: Use EventEmitter with form value
-  //   console.warn(this.contactForm.valid);
-  //   if (this.contactForm.valid) {
-  //     // Send the email
-  //     document.getElementById('contactForm').submit
-  //   }
-  // }
+  handleRecaptchaExecute(action: string, token: string) {
+    console.log("handleRecaptchaExecute", action, token);
 
-  resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
+    this.loading = true;
+    this.contactService.postContactForm(this.contactForm.value, token).subscribe(
+      (result) => {
+        console.log("result", result);
+        this.serverMessage = result;
+
+        // clear the form
+        this.contactForm.reset();
+      },
+      (error) => {
+        console.log("error", error);
+        this.error = error;
+      },
+      () => {
+        this.loading = false;
+      }
+    );
   }
 
-  public onSubmit(): void {
-    this.recaptchaV3Service
-      .execute("importantAction")
-      .subscribe((token) => this.handleToken(token));
+  public ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
-  private handleToken(token: string | null): void {
-    console.log(token);
-    // this.http.post<any>('http://localhost:8080/angular.php')
+  public executeRecaptchaV3(action: any) {
+    this.log.push(`Recaptcha v3 execution requested...`);
+    this.recaptchaV3Service.execute(action);
+  }
+
+  public addTokenLog(message: string, token: string | null) {
+    this.log.push(`${message}: ${this.formatToken(token)}`);
+  }
+
+  public formatToken(token: string | null) {
+    return token !== null ? `${token.substr(0, 7)}...${token.substr(-7)}` : "null";
+  }
+
+  changeTopic(e: any) {
+    this.contactForm.setValue({
+      topic: e.target.value,
+    });
   }
 }

@@ -1,158 +1,146 @@
-<section
-  class="container mx-auto py-20 justify-center items-center text-center"
->
-  <h1 class="title">Let us help you find your new career.</h1>
-  <h3 class="sub-title">
-    How do you want to make a difference? Search opportunities at WorTech.
-  </h3>
-  <div class="my-5">
-    <form class="search-form">
-      <p>I'm interested in</p>
-      <mat-form-field appearance="fill">
-        <mat-label>Search</mat-label>
-        <div class="flex justify-start">
-          <input
-            type="text"
-            placeholder='Try "Cloud" or "Engineer"'
-            aria-label="Search"
-            matInput
-            [formControl]="searchControl"
-            [matAutocomplete]="auto"
-          />
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let option of filteredOptions | async"
-              [value]="option"
-            >
-              {{ option }}
-            </mat-option>
-          </mat-autocomplete>
-        </div>
-      </mat-form-field>
-    </form>
-  </div>
-  <!-- Covid 19 Vaccination Policy -->
-  <div class="flex justify-center">
-    <p class="max-w-xl">
-      <strong>COVID-19 Vaccination:</strong> WorTech does not have a vaccination
-      mandate applicable to all employees. Vaccination requirements will depend
-      on the status of the federal contractor mandate and customer site
-      requirements.
-    </p>
-  </div>
-</section>
-<section
-  class="container-xl py-4 flex-col justify-center items-center text-center"
->
-  <h1 *ngIf="resultCount > 0" class="title">
-    {{ resultCount }} results for {{ searchTopic }}
-  </h1>
-  <div class="flex mx-auto justify-center flex-wrap mb-3">
-    <mat-chip-list #chipList aria-label="Filter selection">
-      <mat-chip
-        *ngFor="let category of categoryChips"
-        (removed)="removeCategory(category)"
-      >
-        {{ category }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <mat-chip
-        *ngFor="let clearance of clearanceChips"
-        (removed)="removeClearance(clearance)"
-      >
-        {{ clearance }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <!-- <mat-chip
-        *ngFor="let location of locationFilters"
-        (removed)="removeLocation(location)">
-        {{location}}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip> -->
-    </mat-chip-list>
-  </div>
-
-  <div class="flex justify-center">
-    <form [formGroup]="form">
-      <mat-form-field class="mr-5" appearance="fill">
-        <mat-label>Clearance</mat-label>
-        <mat-select
-          [formControl]="clearanceControl"
-          name="clearance"
-          (selectionChange)="onClearanceChange($event)"
-        >
-          <mat-option
-            *ngFor="let clearance of clearances"
-            [value]="clearance.level"
-          >
-            {{ clearance.level }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="mr-5" appearance="fill">
-        <mat-label>Categories</mat-label>
-        <mat-select
-          [formControl]="categoryControl"
-          name="category"
-          (selectionChange)="onCategoryChange($event)"
-        >
-          <mat-option
-            *ngFor="let category of categories"
-            [value]="category.value"
-          >
-            {{ category.value }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <!-- <mat-form-field class="mr-5" appearance="fill">
-        <mat-label>Categories</mat-label>
-        <mat-select [formControl]="categoryFilters" multiple>
-          <mat-option *ngFor="let category of categories" [value]="category">
-            {{ category }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="mr-5" appearance="fill">
-        <mat-label>Locations</mat-label>
-        <mat-select [formControl]="locationFilters" multiple>
-          <mat-option *ngFor="let location of locations" [value]="location">
-            {{ location }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
-    </form>
-  </div>
-  <div class="flex w-3/5 flex-col flex-wrap mx-auto">
-    <div
-      *ngFor="let career of careers$ | async; index as i"
-      class="grid grid-cols-3 gap-4 py-8 px-5"
-      [ngClass]="{ 'bg-light-gray': 0 === i % 2 }"
-    >
-      <div class="text-left col-span-2">
-        <h3 class="text-bold">REQ#: {{ career.id }} | {{ career.location }}</h3>
-        <h1 class="title">{{ career.title }}</h1>
-        <p>{{ career.description }}</p>
-      </div>
-      <div class="flex justify-center items-center p-4">
-        <a [routerLink]="['/career', career.id]" aria-label="View Career">
-          <button mat-stroked-button>View Career</button>
-        </a>
-      </div>
+<section class="section h-screen">
+  <div class="container mx-auto pt-16 justify-center items-center text-center">
+    <h1 class="title">Let us help you find your new career.</h1>
+    <h3 class="sub-title">How do you want to make a difference? Search opportunities at WorTech.</h3>
+    <div class="my-5">
+      <form class="search-form">
+        <p>I'm interested in</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Search</mat-label>
+          <div class="flex justify-start">
+            <input
+              type="text"
+              placeholder='Try "Cloud" or "Engineer"'
+              aria-label="Search"
+              matInput
+              [formControl]="searchControl"
+              [matAutocomplete]="auto"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+        </mat-form-field>
+      </form>
+      <app-button label="Search" (btnClick)="searchCareers()"> </app-button>
+    </div>
+    <!-- Covid 19 Vaccination Policy -->
+    <div class="flex justify-center">
+      <p class="max-w-xl px-4">
+        <strong>COVID-19 Vaccination:</strong> WorTech does not have a vaccination mandate applicable to all employees.
+        Vaccination requirements will depend on the status of the federal contractor mandate and customer site
+        requirements.
+      </p>
     </div>
   </div>
-  <!-- Pagination -->
-  <mat-paginator
-    [length]="this.totalCareers"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25]"
-    aria-label="Select page"
-  >
-  </mat-paginator>
+</section>
+
+<section class="section" id="searchResults">
+  <div class="container py-4 flex-col justify-center items-center text-center">
+    <h1 *ngIf="searchTopic !== '' && this.filterChips.length === 0" class="title">
+      {{ resultCount }} result{{ resultCount === 1 ? "" : "s" }} for
+      {{ searchTopic }}
+    </h1>
+    <div class="flex mx-auto justify-center flex-wrap mb-3">
+      <mat-chip-list #chipList aria-label="Filter selection">
+        <mat-chip *ngFor="let filter of filterChips" (removed)="removeFilter(filter)">
+          {{ filter }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <!-- <mat-chip
+          *ngFor="let category of categoryChips"
+          (removed)="removeCategory(category)"
+        >
+          {{ category }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <mat-chip
+          *ngFor="let clearance of clearanceChips"
+          (removed)="removeClearance(clearance)"
+        >
+          {{ clearance }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <mat-chip
+          *ngFor="let location of locationChips"
+          (removed)="removeLocation(location)"
+        >
+          {{ location }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip> -->
+      </mat-chip-list>
+    </div>
+
+    <div class="flex justify-center">
+      <form [formGroup]="form">
+        <mat-form-field class="mr-5" appearance="fill">
+          <mat-label>Clearance</mat-label>
+          <mat-select [formControl]="clearanceControl" name="clearance" (selectionChange)="onClearanceChange($event)">
+            <mat-option *ngFor="let clearance of clearances" [value]="clearance.level">
+              {{ clearance.level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="mr-5" appearance="fill">
+          <mat-label>Categories</mat-label>
+          <mat-select [formControl]="categoryControl" name="category" (selectionChange)="onCategoryChange($event)">
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              {{ category.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="mr-5" appearance="fill">
+          <mat-label>Locations</mat-label>
+          <mat-select [formControl]="locationControl" name="location" (selectionChange)="onLocationChange($event)">
+            <mat-option *ngFor="let location of locations" [value]="location.city">
+              {{ location.city }}, {{ location.state }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <mat-divider class="py-3"></mat-divider>
+
+    <div class="flex w-11/12 md:w-3/5 flex-col flex-wrap mx-auto">
+      <div
+        *ngFor="let career of filteredCareers | async; index as i"
+        class="grid grid-cols-3 gap-4 py-8 px-5"
+        [ngClass]="{
+          'bg-default': 0 === i % 2,
+          'dark:bg-darker/75': 0 === i % 2
+        }"
+      >
+        <div class="text-left col-span-2">
+          <h3 class="text-bold">REQ#: {{ career.id }} | {{ career.location }}</h3>
+          <h1 class="text-3xl">{{ career.title }}</h1>
+          <p>{{ career.description }}</p>
+        </div>
+        <div class="flex justify-center items-center p-4">
+          <a [routerLink]="['/career', career.id]" aria-label="View Career">
+            <button mat-stroked-button>View Career</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Pagination -->
+    <mat-paginator
+      class="dark:bg-darkest"
+      [length]="this.totalCareers"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
 </section>

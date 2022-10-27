@@ -8,19 +8,24 @@
 @include mat.core();
 
 // My crap
-$dark: rgb(36, 41, 47);
-$darker: rgb(2, 4, 8);
+$dark: hsl(213, 14%, 16%);
+$darker: hsl(221, 57%, 11%);
+$darkest: hsl(219, 78%, 7%);
+// $darkest: rgb(2, 4, 8); old
 $light: rgb(246, 248, 250);
 
-$bg-clr-dark: $darker;
-$bg-clr-default: $light;
+$gh-gradient: linear-gradient(90deg, #24292e, #1b1f23);
+$gh-blue: hsl(218, 87%, 18%);
 
-$text-clr-dark: $dark;
-$text-clr-light: #ffffff;
+$bg-clr-dark: $darkest;
+$bg-clr-default: white;
+
+$light-primary-text: #ffffff;
+$dark-primary-text: $dark;
 $text-clr-link: rgb(13, 107, 218);
 
-$scheme-dark: $text-clr-light, $bg-clr-dark;
-$scheme-default: $text-clr-dark, $bg-clr-default;
+$scheme-dark: $light-primary-text, $bg-clr-dark;
+$scheme-default: $dark-primary-text, $bg-clr-default;
 
 @mixin color-scheme($text, $bg) {
   background-color: $bg;
@@ -29,8 +34,60 @@ $scheme-default: $text-clr-dark, $bg-clr-default;
 
 // end of my crap
 
-$angular-primary: mat.define-palette(mat.$indigo-palette, 500, 100, 900);
-$angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$primary: (
+  50: #eff6ff,
+  100: #dbeafe,
+  200: #bfdbfe,
+  300: #93c5fd,
+  400: #60a5fa,
+  500: #3b82f6,
+  600: #2563eb,
+  700: #1d4ed8,
+  800: #1e40af,
+  900: #1e3a8a,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+$accent: (
+  50: #f8fafc,
+  100: #f1f5f9,
+  200: #e2e8f0,
+  300: #cbd5e1,
+  400: #94a3b8,
+  500: #64748b,
+  600: #475569,
+  700: #334155,
+  800: #1e293b,
+  900: #0f172a,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  ),
+);
+
+// $angular-primary: mat.define-palette(mat.$indigo-palette, 500, 100, 900);
+$angular-primary: mat.define-palette($primary, 700, 100, 900);
+// $angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$angular-accent: mat.define-palette($accent);
 
 $angular-warn: mat.define-palette(mat.$red-palette);
 
@@ -62,38 +119,76 @@ $angular-dark-theme: mat.define-dark-theme(
 // }
 
 .dark {
-  // @include mat.all-component-colors($angular-dark-theme);
-  @include mat.all-component-themes($angular-dark-theme);
-  @include color-scheme($scheme-dark...);
-  // background-color: $bg-clr-dark;
-  // color: white;
+  // @include mat-core-theme($angular-dark-theme);
+  @include angular-material-theme($angular-dark-theme);
+  // @include color-scheme($scheme-dark...);
+  // background-image: linear-gradient(to right top, $darkest, $darker);
+  // color: $light-primary-text;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-*[data-theme="dark"] {
-  color: white;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+// }
 
 html,
 body {
-  @include mat.all-component-themes($angular-default-theme);
-  @include color-scheme($scheme-default...);
-  background-color: #ffffff;
-  width: 100vw;
+  @include mat.core-theme($angular-default-theme);
+  // @include mat.all-component-themes($angular-default-theme);
+  // @include color-scheme($scheme-default...);
+  position: fixed;
+  overflow-y: auto;
+  // width: 100vw;
+  width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
-.sub-title {
-  font-size: 1rem;
-  color: lightslategray;
+.pill {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  font-weight: 500;
+
+  &-disabled {
+    @extend .pill;
+    background: none;
+    border: #e2e8f0 1px solid;
+    color: #e2e8f0;
+  }
 }
 
-.title {
-  font-size: 2rem;
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 100%;
+}
+
+.section-title {
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.05rem;
   padding-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.5rem;
+  color: #94a3b8;
+  line-height: 2rem;
+  padding-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+  }
 }

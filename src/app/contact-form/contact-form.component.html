@@ -1,27 +1,12 @@
 <div>
-  <span *ngIf="validationMessage" class="text-red" id="contact">{{
-    validationMessage
-  }}</span>
+  <span *ngIf="validationMessage" class="text-red" id="contact">{{ validationMessage }}</span>
   <form [formGroup]="contactForm" class="flex flex-wrap">
     <div class="form-input">
-      <input
-        id="name"
-        name="name"
-        type="text"
-        (ngSubmit)="onSubmit()"
-        formControlName="name"
-        placeholder="Your Name"
-      />
+      <input id="name" name="name" type="text" formControlName="name" placeholder="Your Name" />
     </div>
 
     <div class="form-input">
-      <input
-        id="email"
-        name="email"
-        type="email"
-        formControlName="email"
-        placeholder="Email"
-      />
+      <input id="email" name="email" type="email" formControlName="email" placeholder="Email" />
     </div>
 
     <div class="form-input">
@@ -34,7 +19,7 @@
       />
     </div>
     <div class="form-input">
-      <select (change)="update($event)" name="topic" formControlName="topic">
+      <select name="topic" formControlName="topic">
         <option value="default" disabled>Select a Topic</option>
         <option *ngFor="let topic of topics" [value]="topic">
           {{ topic }}
@@ -42,24 +27,30 @@
       </select>
     </div>
     <div class="form-message">
-      <textarea
-        name="message"
-        formControlName="message"
-        placeholder="Your message..."
-      ></textarea>
+      <textarea name="message" formControlName="message" placeholder="Your message..."></textarea>
     </div>
-    <!-- <button
-      class="g-recaptcha"
-      data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-      data-callback="onSubmit"
-      data-action="submit"
+    <!-- <re-captcha
+      name="recaptcha"
+      formControlName="recaptcha"
+      (resolved)="addTokenLog('Reactive form mode resolved', $event)"
     >
-      Submit Request
-    </button> -->
-    <re-captcha [siteKey]="siteKey" formControlName="recaptcha"></re-captcha>
-    <button mat-stroked-button type="submit" [disabled]="contactForm.invalid">
+    </re-captcha> -->
+    <button
+      *ngIf="!loading"
+      class="bg-primary/80 text-white px-16 py-4 rounded-md font-bold cursor-pointer disabled:opacity-50"
+      type="submit"
+      (click)="executeRecaptchaV3('submit')"
+      [disabled]="!contactForm.valid"
+    >
       Submit
     </button>
-    <!-- <button (click)="onSubmit()">Submit</button> -->
   </form>
+  <button *ngIf="loading" type="button" class="bg-indigo-500 ..." disabled>
+    <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+      <!-- ... -->
+    </svg>
+    Sending...
+  </button>
+  <div *ngIf="error">Error :(</div>
+  <div *ngIf="serverMessage">hello {{ serverMessage }}</div>
 </div>

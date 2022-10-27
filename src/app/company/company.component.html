@@ -1,0 +1,202 @@
+<main className="w-full">
+  <div class="section bg-mountains bg-cover min-h-[80vh]">
+    <div class="container mx-auto py-16">
+      <div class="flex flex-wrap bg-white text-black">
+        <div class="p-8">
+          <p class="uppercase">About WorTech</p>
+          <h1 class="section-title">Who we are.</h1>
+          <p class="md:text-lg">
+            The individuals working side-by-side with government, defense, and intelligence community. We bring the
+            experience and expertise needed to deliver the product or service directly to the warfighter. The mission is
+            our #1 priority. Implementing the technological capabilities of tomorrow, today.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay warfighter -->
+  <div class="section">
+    <div class="container flex flex-col md:flex-row-reverse justify-center items-center mx-auto py-4 md:py-16">
+      <div class="w-screen md:w-3/5 h-96 md:h-128 shrink bg-warplane bg-cover bg-right"></div>
+      <div
+        class="w-4/5 md:w-2/5 bg-default dark:bg-darker flex justify-center items-center -mt-20 md:mt-0 md:-mr-16 py-12 px-6"
+      >
+        <div class="h-3/5">
+          <h1 class="text-2xl md:text-3xl font-black">Proudly serving the warfighter since 2012.</h1>
+          <p class="my-4 text-sm md:text-base dark:text-accent">
+            For more than 10 years, WorTech has successfully delivered custom technology solutions. We deliver quality
+            and bring a unique perspective on future technology to keep clients and stakeholders ahead of the curve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our leaders -->
+  <div id="leaders" class="flex w-screen overflow-x-scroll no-scrollbar snap-x snap-mandatory py-4 md:py-16 md:mx-auto">
+    <div
+      class="container snap-always snap-center min-w-full flex flex-col md:flex-row justify-center items-center px-16"
+    >
+      <div class="w-screen md:w-1/2 h-96 shrink bg-snowcaps bg-cover"></div>
+      <div
+        class="w-full md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-20 md:mt-0 md:-ml-16 py-4 md:py-12 px-6"
+      >
+        <div class="md:h-3/5">
+          <h1 class="text-3xl font-black">Our Leaders</h1>
+          <p class="my-4 text-base dark:text-accent">
+            We are a company fueled by the people within. Meet the leaders of the WorTech team.
+          </p>
+          <app-button label="View" (btnClick)="scrollToDetails('#leaders')" [isDisabled]="false"></app-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overflow view of leaders -->
+    <div class="scroll-x-container">
+      <!-- Dan -->
+      <div class="w-full md:w-96 shrink-0">
+        <div class="w-full flex flex-col items-center">
+          <div class="w-1/2 aspect-square mx-auto my-4 bg-dan bg-cover rounded-full"></div>
+          <h1 class="text-4xl font-bold">Daniel Wortman</h1>
+          <h3 class="text-accent text-base font-bold uppercase tracking-wide">President</h3>
+          <p class="text-sm md:text-base text-justify mt-2">
+            Dan is majority owner and founding partner. He is a US Navy veteran, joined the military at 18 years old and
+            then entered the Department of Defense and has over 30 years' experience in this industry. The company
+            previously based in Stevensville MD, moved to Wilmington NC to extend the company's mission focus into North
+            Carolina..
+          </p>
+        </div>
+      </div>
+      <!-- Scott -->
+      <div class="w-full md:w-96 shrink-0">
+        <div class="w-full flex flex-col items-center">
+          <div class="w-1/2 aspect-square mx-auto my-4 bg-scott bg-cover rounded-full"></div>
+          <h1 class="text-4xl font-bold">Scott Wecht</h1>
+          <h3 class="text-accent text-base font-bold uppercase tracking-wide">Vice President / Technical Director</h3>
+          <p class="text-sm md:text-base text-justify mt-2">
+            Scott is WorTech's Technical Director, an Electrical Engineer with over 30 years of practical experience in
+            commercial and government solution spaces - from his early years designing ASICs (“chips”) and coding
+            embedded signal processors, to providing systems engineering for today's container-based microservices
+            architectures - technology has been the driver, but mission remains WorTech's focus. Scott is based out of
+            the company's branch office located in Columbia, MD.
+          </p>
+        </div>
+      </div>
+      <!-- Katie -->
+      <div class="w-full md:w-96 shrink-0">
+        <div class="w-full flex flex-col items-center">
+          <div class="w-1/2 aspect-square mx-auto my-4 bg-katie bg-cover rounded-full"></div>
+          <h1 class="text-4xl font-bold">Katie Rahn</h1>
+          <h3 class="text-accent text-base font-bold uppercase tracking-wide">
+            Partner Relations & Contracts Representative
+          </h3>
+          <p class="text-sm md:text-base text-justify mt-2">
+            Katie brings 15 years of incredible customer relations experience. She is the foundation of WorTech -
+            scheduling, documenting, planning, and managing all aspects of internal and external communications out of
+            WorTech's headquarters stationed in Columbia, MD.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <div id="benefits" class="flex w-screen overflow-x-scroll no-scrollbar snap-x snap-mandatory py-16 mx-auto">
+    <div
+      class="container snap-always snap-center min-w-full flex flex-col md:flex-row-reverse justify-center items-center px-16"
+    >
+      <div class="w-screen md:w-1/2 h-96 shrink bg-benefits bg-cover"></div>
+      <div
+        class="w-full md:w-1/2 bg-default dark:bg-darker flex justify-center items-center -mt-20 md:mt-0 md:-mr-16 py-4 md:py-12 px-6"
+      >
+        <div class="md:h-3/5">
+          <h1 class="text-3xl font-black">Our Benefits</h1>
+          <p class="my-4 text-base dark:text-accent">
+            We believe in listening to our people and improving our benefits accordingly.
+          </p>
+          <app-button label="View" (btnClick)="scrollToDetails('#benefits')" [isDisabled]="false"></app-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-x-container">
+      <!-- Health -->
+      <div class="benefits-card bg-default dark:bg-darker">
+        <div class="text-center">
+          <mat-icon color="primary">health_and_safety</mat-icon>
+          <h1 class="text-xl font-black tracking-wide">Health</h1>
+        </div>
+        <ul>
+          <li><mat-icon color="primary">check</mat-icon>100% Health Care Coverage</li>
+          <li><mat-icon color="primary">check</mat-icon>100% Dental Coverage</li>
+          <li><mat-icon color="primary">check</mat-icon>100% Vision Coverage</li>
+          <li><mat-icon color="primary">check</mat-icon>Short & Long-Term Disability</li>
+          <li><mat-icon color="primary">check</mat-icon>Term Life Insurance</li>
+        </ul>
+      </div>
+      <!-- Education -->
+      <div class="benefits-card bg-default dark:bg-darker">
+        <div class="text-center">
+          <mat-icon color="primary">school</mat-icon>
+          <h1 class="text-xl font-black tracking-wide">Education</h1>
+        </div>
+        <ul>
+          <li><mat-icon color="primary">check</mat-icon>100% Reimbursement for Approved Training</li>
+          <li><mat-icon color="primary">check</mat-icon>Books and Online Courses</li>
+          <li><mat-icon color="primary">check</mat-icon>Trip Expenses for Conferences and Classes</li>
+          <li><mat-icon color="primary">check</mat-icon>Virtual Training</li>
+        </ul>
+      </div>
+      <!-- Future Planning -->
+      <div class="benefits-card bg-default dark:bg-darker">
+        <div class="text-center">
+          <mat-icon color="primary">savings</mat-icon>
+          <h1 class="text-xl font-black tracking-wide">Future Planning</h1>
+        </div>
+        <ul>
+          <li><mat-icon color="primary">check</mat-icon>401k Profit Sharing Plan</li>
+          <li><mat-icon color="primary">check</mat-icon>10% Automatic Employer Contribution</li>
+          <li><mat-icon color="primary">check</mat-icon>In-house Financial Advisors</li>
+          <li><mat-icon color="primary">check</mat-icon>Employee Stock Ownership Plan (coming soon)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section bg-default dark:bg-darker">
+    <div class="container mx-8 py-16">
+      <div class="flex flex-col justify-center items-center mb-5">
+        <h1 class="section-title">WorTech Family</h1>
+        <p class="text-base lg:text-xl dark:text-accent">
+          We love fostering a sense of family, and what better way than fun activities like Happy Hours and Curling!
+        </p>
+      </div>
+      <iframe
+        class="w-full aspect-video"
+        src="https://www.youtube.com/embed/GaceXEY1e8A"
+        title="WorTech Curling"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <div class="section bg-darkest">
+    <div class="container mx-auto py-16 text-white">
+      <div class="flex flex-col justify-center items-center mb-5">
+        <h1 class="text-5xl">Connect</h1>
+        <p class="text-lg my-4">How can WorTech help you?</p>
+        <a
+          class="bg-primary px-8 py-4 font-bold rounded-md tracking-wide text-lg hover:scale-110 transition duration-300 ease-in-out"
+          [routerLink]="['/']"
+          fragment="contact-us"
+          >Contact</a
+        >
+        <!-- <app-button [routerLink]label="Contact" [isDisabled]="false">
+      </app-button> -->
+      </div>
+    </div>
+  </div>
+</main>
